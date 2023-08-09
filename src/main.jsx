@@ -9,13 +9,17 @@ import {createRoot} from 'react-dom/client';
 function App() {
   //JSX 값 반환
   return (
-    <div>
+    <div className='App'>
+      {/* JSX 주석 */}
+      {/* <Heading>React</Heading> */}
       <h1>React</h1>
+      {/* <Description>...</Description> */}
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum ab animi,
-        labore facilis obcaecati ullam placeat molestiae. Enim, consectetur
-        laudantium.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum ab
+        animi, labore facilis obcaecati ullam placeat molestiae. Enim,
+        consectetur laudantium.
       </p>
+      {/* <List /> */}
       <ul>
         <li>list item A</li>
         <li>list item B</li>
@@ -23,7 +27,6 @@ function App() {
       </ul>
     </div>
   );
-  
 }
 
 createRoot(document.getElementById('root')).render(

@@ -1,6 +1,8 @@
 // 스타일 및 에셋 연결
 import './Practice.css';
 import { getRandom } from '@/utils';
+import reactImagePath from '@/assets/react.svg';
+import viteImagePath from '@/assets/vite.svg';
 
 // TypeScript
 // let imageType:  'react' | 'vite' = 'react'
@@ -32,6 +34,15 @@ function Practice() {
     return null;
   };
 
+  // 2-1. 조건 문
+  // let imageComponent;
+  // if (imageType === 'vite') {
+  //   imageComponent = <img src={viteImagePath} alt="비트" />;
+  // } else {
+  //   imageComponent = <img src={reactImagePath} alt="리액트" />;
+  // }
+
+  // 2-2. 조건 식
   return (
     <div className="Practice">
       <h2>JSX 인 액션</h2>
@@ -65,6 +76,25 @@ function Practice() {
           <p>이미지 타입(image type)에 따라 렌더링 여부를 결정합니다.</p>
           <div className="conditionalRendering">
             {/* imageType 값이 'vite'인 경우 Vite 이미지를, 'react'인 경우 React 이미지를 화면에 표시합니다. */}
+            {imageType.includes('vite') ? (
+              <img src={viteImagePath} alt="비트" />
+            ) : (
+              <img src={reactImagePath} alt="리액트" />
+            )}
+
+            {/* 조건문으로 렌더링 */}
+            {/* {imageComponent} */}
+
+            {/* 조건식으로 렌더링 (3항 연산식(ternary), 논리 곱/합 연산자, null 병합 연산자, 옵셔널 체이닝) */}
+
+            {/* src/assets 동적 자원 호출 */}
+            {/* <img src={reactImagePath} alt="리액트" /> */}
+            {/* <img src={viteImagePath} alt="비트" /> */}
+
+            {/* public 정적 자원 호출 */}
+            {/* <img src="/react.svg" alt="리액트" /> */}
+            {/* <img src="/vite.svg" alt="비트" /> */}
+
             {/* imageType이 'vite'인 경우 'Vite', 'react'인 경우 'React' 텍스트를 화면에 표시합니다. */}
           </div>
         </dd>

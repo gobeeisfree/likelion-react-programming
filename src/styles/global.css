@@ -34,3 +34,7 @@ abbr[title] {
   cursor: help;
   text-decoration: none;
 }
+
+[hidden] {
+  display: none !important;
+}

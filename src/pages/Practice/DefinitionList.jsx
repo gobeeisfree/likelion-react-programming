@@ -36,8 +36,10 @@ function DefinitionList() {
   return (
     <dl className="descriptionList">
       <DisplayingData statusMessage={statusMessage} />
+      {/* 조건부 렌더링(rendering) vs. 조건부 표시(display) */}
+      {/* SSR (존재 혹은 존재하지 않음) vs. Client (화면에 표시 혹은 감춤) */}
       <ConditionalRendering imageType={imageType} />
-      <ConditionalDisplay />
+      <ConditionalDisplay isShowReactImage={isShowReactImage} />
       <RenderingLists renderList={renderList} />
     </dl>
   );

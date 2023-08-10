@@ -30,7 +30,8 @@ const reactLibrary = {
 
 function DefinitionList() {
   const renderList = () => {
-    return null;
+    const renderListItem = (message) => <li key={message}>{message}</li>;
+    return statusMessage.map(renderListItem);
   };
 
   return (
@@ -40,7 +41,7 @@ function DefinitionList() {
       {/* SSR (존재 혹은 존재하지 않음) vs. Client (화면에 표시 혹은 감춤) */}
       <ConditionalRendering imageType={imageType} />
       <ConditionalDisplay isShowReactImage={isShowReactImage} />
-      <RenderingLists renderList={renderList} />
+      <RenderingLists statusMessage={statusMessage} renderList={renderList} />
     </dl>
   );
 }

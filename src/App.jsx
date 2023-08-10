@@ -1,9 +1,12 @@
 import RootLayout from './layout/RootLayout';
+import Practice from './pages/Practice';
 
 function App() {
   return (
     <div className="App">
-      <RootLayout></RootLayout>
+      <RootLayout>
+        <Practice />
+      </RootLayout>
     </div>
   );
 }

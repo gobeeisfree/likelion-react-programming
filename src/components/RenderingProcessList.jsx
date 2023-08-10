@@ -5,7 +5,7 @@ function RenderingProcessList() {
       <li>컴포넌트 렌더링</li>
       <li>DOM 커밋</li>
     </ol>
-  )
+  );
 }
 
 export default RenderingProcessList;

@@ -9,7 +9,7 @@ function Home() {
       <Logo color="sky" />
       <Logo color="rose" size={108} />
     </div>
-  )
+  );
 }
 
 export default Home;

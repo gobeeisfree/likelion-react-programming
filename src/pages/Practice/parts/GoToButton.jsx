@@ -1,15 +1,20 @@
 function GoToButton({ direction /* 'down' | 'up */, label /* string */ }) {
-  let className = '';
+  // 문 또는 식
+  // let className = '';
 
-  if (direction === 'down') {
-    className = 'scrollDown';
-  } else {
-    className = 'scrollUp';
-  }
+  // if (direction === 'down') {
+  //   className = 'scrollDown';
+  // } else {
+  //   className = 'scrollUp';
+  // }
+
   return (
     <button
       type="button"
-      className={className}
+      // className={className}
+
+      // 식만 사용 가능
+      className={direction === 'down' ? 'scrollDown' : 'scrollUp'}
       aria-label={label}
       title={label}
     >

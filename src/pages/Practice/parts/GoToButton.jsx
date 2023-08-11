@@ -3,7 +3,6 @@ function GoToButton({
   label /* string */,
   ...restProps
 }) {
-  console.log(restProps);
   // 문 또는 식
   // let className = '';
 
@@ -12,7 +11,6 @@ function GoToButton({
   // } else {
   //   className = 'scrollUp';
   // }
-
   return (
     <button
       type="button"

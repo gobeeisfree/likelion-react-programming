@@ -7,15 +7,16 @@ function Controller() {
       <GoToButton
         onClick={() => {
           const practiceElement = getElem('.Practice');
-          console.log(practiceElement);
+          practiceElement.scroll({ top: 1000, behavior: 'smooth' });
         }}
         direction="down"
         label="스크롤 다운"
       />
       <GoToButton
-        onClick={() =>
-          getElem('.Practice').scroll({ top: 0, behavior: 'smooth' })
-        }
+        onClick={() => {
+          const practiceElement = getElem('.Practice');
+          practiceElement.scroll({ top: 0, behavior: 'smooth' });
+        }}
         direction="up"
         label="스크롤 업"
       />

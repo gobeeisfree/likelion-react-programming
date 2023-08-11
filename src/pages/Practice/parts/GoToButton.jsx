@@ -1,4 +1,9 @@
-function GoToButton({ direction /* 'down' | 'up */, label /* string */ }) {
+function GoToButton({
+  direction /* 'down' | 'up */,
+  label /* string */,
+  ...restProps
+}) {
+  console.log(restProps);
   // 문 또는 식
   // let className = '';
 
@@ -17,6 +22,7 @@ function GoToButton({ direction /* 'down' | 'up */, label /* string */ }) {
       className={direction === 'down' ? 'scrollDown' : 'scrollUp'}
       aria-label={label}
       title={label}
+      {...restProps}
     >
       <svg
         fill="currentColor"

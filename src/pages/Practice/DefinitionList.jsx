@@ -29,9 +29,11 @@ const reactLibrary = {
 /* 컴포넌트 --------------------------------------------------------------------- */
 
 function DefinitionList() {
-  const renderList = () => {
+  const renderList = ({ reverse = false } = {}) => {
     const renderListItem = (message) => <li key={message}>{message}</li>;
-    return statusMessage.map(renderListItem);
+    return (!reverse ? statusMessage : statusMessage.toReversed()).map(
+      renderListItem
+    );
   };
 
   return (

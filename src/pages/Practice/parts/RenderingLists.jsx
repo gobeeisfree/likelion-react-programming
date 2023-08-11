@@ -5,14 +5,21 @@ function RenderingLists({ statusMessage, renderList }) {
       <dd>
         <p>상태 메시지(status message) 배열을 리스트 렌더링합니다.</p>
         <ul className="renderList">
-          {statusMessage.map((message) => {
-            return <li key={message}>{message}</li>;
-          })}
+          {statusMessage.map((message) => (
+            <li key={message}>{message}</li>
+          ))}
         </ul>
       </dd>
       <dd>
         <p>상태 메시지(status message) 배열을 역순 정렬하여 렌더링합니다.</p>
+        {/* 외부에서 props 전달된 함수를 실행한 결과를 활용 */}
         <ul className="renderList">{renderList({ reverse: true })}</ul>
+        {/* 일반적으로 리액트 사용자가 사용하는 방식 */}
+        {/* <ul className="renderList">
+          {statusMessage.toReversed().map((message) => (
+            <li key={message}>{message}</li>
+          ))}
+        </ul> */}
       </dd>
       <dd>
         <p>

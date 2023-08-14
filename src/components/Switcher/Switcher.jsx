@@ -1,7 +1,5 @@
 import styles from './Switcher.module.css';
 
-console.log(styles['md']);
-
 function Switcher({
   on = false,
   onLabel = '',

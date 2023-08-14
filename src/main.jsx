@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './styles/global.css';
 
+// ReactDOMRoot { render, unmount }
 ReactDOM.createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <App /> {/* Virtual DOM ( React Element Tree: React Created) */}
   </StrictMode>
 );
+
+// rendering → mount (DOM)

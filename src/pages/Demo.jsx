@@ -1,6 +1,6 @@
 /* eslint-disable no-inner-declarations */
 import Switcher from '@/components/Switcher/Switcher';
-import React from 'react';
+import { useState } from 'react';
 
 {
   // 로컬 변수
@@ -16,7 +16,7 @@ import React from 'react';
   // console.log('컴포넌트 렌더링 myName =', myName);
 }
 
-function Demo() {
+function DemoPage() {
   // 상태 관리는 페이지 컴포넌트에서 진행
   // React.useState() 훅으로 선언된 상태로 제어
   // on / off 상태 변수 (관리할 데이터 타입은 Boolean)
@@ -28,14 +28,28 @@ function Demo() {
   // console.log(isReady);
   // console.log(setIsReady);
 
-  const [isReady, setIsReady] = React.useState(false);
+  // 다크 모드 상태 관리
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const handleToggleDarkMode = () => {
+    setIsDarkMode(!isDarkMode);
+  };
 
-  // 리액트가 요구하는 방법대로 상태를 업데이트(변경)하면?
-  // 렌더링 트리거 → 컴포넌트 렌더링 → DOM 커밋 순으로 진행
+  // 리듀스 모션 상태 관리
+  const [isReducedMotion, setIsReducedMotion] = useState(false);
+  const handleToggleReducedMotion = () => {
+    setIsReducedMotion((prevState) => {
+      const nextState = !prevState;
+      return nextState;
+    });
+  };
 
+  const [isReady, setIsReady] = useState(false);
   const handleToggleReady = () => {
     setIsReady(!isReady);
   };
+
+  // 리액트가 요구하는 방법대로 상태를 업데이트(변경)하면?
+  // 렌더링 트리거 → 컴포넌트 렌더링 → DOM 커밋 순으로 진행
 
   return (
     <div
@@ -52,20 +66,19 @@ function Demo() {
       {/* <button type='button' onClick={handleUpdateMyName}>나의 이름을 바꿔줘</button> */}
       {/* Atomic Component → Stateless or Presentational */}
       <Switcher
-        on={isReady}
-        onText="on"
-        offText="off"
+        on={isDarkMode}
         label="다크 모드"
-        onClick={handleToggleReady}
+        onClick={handleToggleDarkMode}
       />
       <Switcher
-        on={isReady}
+        on={isReducedMotion}
         onText="on"
         offText="off"
         label="리듀스 모션"
-        onClick={handleToggleReady}
+        onClick={handleToggleReducedMotion}
       />
+      <Switcher on={isReady} label="R U Ready?" onClick={handleToggleReady} />
     </div>
   );
 }
-export default Demo;
+export default DemoPage;

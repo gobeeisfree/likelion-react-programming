@@ -13,7 +13,7 @@ import React from 'react';
     console.log(myName);
   }
 
-  console.log('컴포넌트 렌더링 myName =', myName);
+  // console.log('컴포넌트 렌더링 myName =', myName);
 }
 
 function Demo() {
@@ -42,9 +42,10 @@ function Demo() {
       style={{
         padding: 40,
         display: 'flex',
+        flexDirection: 'column',
         justifyContent: 'center',
-        alignItems: 'center',
-        columnGap: 8,
+        alignItems: 'flex-end',
+        gap: 8,
       }}
     >
       {/* <p>{myName}</p> */}
@@ -52,14 +53,16 @@ function Demo() {
       {/* Atomic Component → Stateless or Presentational */}
       <Switcher
         on={isReady}
-        onLabel="on"
-        offLabel="off"
+        onText="on"
+        offText="off"
+        label="다크 모드"
         onClick={handleToggleReady}
       />
       <Switcher
         on={isReady}
-        onLabel="on"
-        offLabel="off"
+        onText="on"
+        offText="off"
+        label="리듀스 모션"
         onClick={handleToggleReady}
       />
     </div>

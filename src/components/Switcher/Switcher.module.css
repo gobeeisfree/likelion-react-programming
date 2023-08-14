@@ -10,7 +10,7 @@
   --on-handle: color-mix(in srgb, var(--on-bg) 100%, var(--on-text) 50%);
 
   position: relative;
-  display: flex;
+  display: inline-flex;
   justify-content: flex-start;
   align-items: center;
   block-size: calc(var(--size) * 1.85);
@@ -47,4 +47,16 @@
     line-height: 1;
     background: var(--off-bg);
   }
+}
+
+.SwitcherWrapper {
+  display: inline-flex;
+  min-width: 140px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4px;
+}
+
+.label {
+  order: -1;
 }

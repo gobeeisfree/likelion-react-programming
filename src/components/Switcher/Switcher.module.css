@@ -1,0 +1,40 @@
+.Switcher {
+  --size-sm: 16px;
+  --size-md: 18px;
+  --size-lg: 20px;
+  --size: var(--size-sm);
+  --on-bg: #42a5f5;
+  --on-text: #ebf5fd;
+  --on-handle: color-mix(in srgb, var(--on-bg) 100%, var(--on-text) 50%);
+
+  background: #8887;
+  border: 0;
+  border-radius: 9999px;
+  padding: calc(var(--size) / 2) calc(var(--size) * 1.5);
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: var(--size);
+
+  &.md {
+    --size: var(--size-md);
+  }
+
+  &.lg {
+    --size: var(--size-lg);
+  }
+
+  &.on {
+    background: var(--on-bg);
+    color: var(--on-text);
+  }
+
+  .handle {
+    display: grid;
+    place-content: center;
+    block-size: calc(var(--size) * 1.2);
+    inline-size: calc(var(--size) * 1.2);
+    border-radius: 9999px;
+    line-height: 1;
+    /* background: red; */
+  }
+}

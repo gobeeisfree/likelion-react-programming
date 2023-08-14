@@ -1,22 +1,24 @@
 // 1. 이벤트 핸들러
 // 2. 이펙트 훅
 import * as React from 'react';
-
 // React.useEffect
 // React.useState
 // ...
 // React.useRef
-
 function SideEffect() {
   // pure
   console.log(document.querySelector('.SideEffect'));
 
-  React.useEffect(() => {
-    // impure
-    console.log('effect callback');
-    const effectElement = document.querySelector('.SideEffect');
-    effectElement?.setAttribute('lang', 'en');
-  });
+  React.useEffect(
+    /* setup */
+    () => {
+      // impure
+      console.log('effect callback');
+      const effectElement = document.querySelector('.SideEffect');
+      effectElement?.setAttribute('lang', 'en');
+    }
+    /* dependencies? */
+  );
 
   /* 
     // Virtual DOM => Virtual Element Tree (React Element Tree)
@@ -54,7 +56,6 @@ function SideEffect() {
     React.createElement('h2', null, 'Side Effect'),
     React.createElement('p', null, 'impure action')
   );
-
   // return (
   //   <div className="SideEffect">
   //     <h2>Side Effect</h2>
@@ -62,5 +63,4 @@ function SideEffect() {
   //   </div>
   // )
 }
-
 export default SideEffect;

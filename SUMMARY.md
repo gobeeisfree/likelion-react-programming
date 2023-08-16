@@ -4,6 +4,7 @@
 1. 데이터 유형(number, string, boolean, array, object) 별 React 상태 관리 방법을 실습하였습니다.
 1. 용도에 따라 폼 입력 필드의 `value`, `defaultValue`, `readOnly`, `onChange` 설정 방법을 다뤘습니다.
 1. 상태(state)와 파생된 상태(derived state)를 사용해 사용자 인터페이스를 구성하고 사용자와 상호작용합니다.
+1. 쌍(pair)으로 관리될 필요가 있는 상태는 그룹(group)으로 관리하는 것이 좋습니다.
 
 # 8. 14
 

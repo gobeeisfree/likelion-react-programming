@@ -2,17 +2,36 @@ import { useState } from 'react';
 
 function LearnStateAndEffects() {
   // 숫자 값 상태 관리
-  // 마우스의 x 좌표
-  const [mouseX, setMouseX] = useState(0);
-  // 마우스의 y 좌표
-  const [mouseY, setMouseY] = useState(0);
 
-  const handlePrintMousePosition = (e) => {
-    setMouseX(e.clientX);
-    setMouseY(e.clientY);
+  // 마우스의 x 좌표
+  // const [mouseX, setMouseX] = useState(0);
+  // 마우스의 y 좌표
+  // const [mouseY, setMouseY] = useState(0);
+
+  // 개별 상태 관리 → 그룹(묶음) 상태 관리
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handlePrintMousePosition = ({ pageX: x, pageY: y }) => {
+    // setMouseX(e.clientX);
+    // setMouseY(e.clientY);
+    setMousePosition({ x, y });
   };
 
   // 객체 상태 관리
+  // { x: 10, y: 96 }
+  // 배열 상태 관리
+  // [10, 96]
+
+  const [repository, setRepository] = useState({
+    id: 'repo-101',
+    title: 'yamoo9/likelion-FEQA',
+    link: 'https://github.com/yamoo9/likelion-FEQA',
+    profile: {
+      url: 'https://avatars.githubusercontent.com/u/1850554?s=166v=4',
+      label: 'yamoo9',
+    },
+  });
+
   return (
     <div
       className="m-10 flex flex-col items-start gap-2"
@@ -23,8 +42,80 @@ function LearnStateAndEffects() {
       </h2>
 
       <output>
-        마우스 X 좌표: {mouseX} / 마우스 Y 좌표: {mouseY}
+        마우스 X 좌표 : {mousePosition.x} / 마우스 Y 좌표 : {mousePosition.y}
       </output>
+
+      <h2 className="mt-10 text-2xl font-semibold">저장소 정보 수정</h2>
+      <form className="w-1/2">
+        <div className="flex w-full items-center gap-2">
+          <label htmlFor="repoTitle" className="font-medium">
+            타이틀 (title)
+          </label>
+          <input
+            type="text"
+            name="repoTitle"
+            id="repoTitle"
+            value={repository.title}
+            onChange={(e) => {
+              setRepository({
+                ...repository,
+                title: e.target.value,
+              });
+            }}
+            className="flex-1 border-b-2 border-slate-400 bg-transparent p-1 placeholder:text-slate-400"
+            placeholder="yamoo9/repository"
+          />
+        </div>
+        <div className="flex w-full items-center gap-2">
+          <label htmlFor="repoLink" className="font-medium">
+            링크 (href)
+          </label>
+          <input
+            type="text"
+            name="repoLink"
+            id="repoLink"
+            value={repository.link}
+            onChange={(e) => {
+              setRepository({
+                ...repository,
+                link: e.target.value,
+              });
+            }}
+            className="flex-1 border-b-2 border-slate-400 bg-transparent p-1 placeholder:text-slate-400"
+            placeholder="https://my-web-service.dev"
+          />
+        </div>
+        <div className="flex w-full items-center gap-2">
+          <label htmlFor="repoProfileLabel" className="font-medium">
+            프로필 레이블 (profile.label)
+          </label>
+          <input
+            type="text"
+            name="repoProfileLabel"
+            id="repoProfileLabel"
+            value={repository.profile.label}
+            onChange={(e) => {
+              setRepository({
+                ...repository,
+                profile: {
+                  ...repository.profile,
+                  label: e.target.value,
+                },
+              });
+            }}
+            className="flex-1 border-b-2 border-slate-400 bg-transparent p-1 placeholder:text-slate-400"
+            placeholder="yamoo9"
+          />
+        </div>
+        <div role="group" className="mt-5 flex gap-1">
+          <button type="submit" className="bg-sky-500 px-2.5 py-1.5 text-white">
+            저장
+          </button>
+          <button type="reset" className="bg-rose-500 px-2.5 py-1.5 text-white">
+            취소
+          </button>
+        </div>
+      </form>
     </div>
   );
 }

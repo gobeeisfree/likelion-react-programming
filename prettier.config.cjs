@@ -1,4 +1,6 @@
 module.exports = {
+  // tailwindConfig: './tailwind.config.js',
+  plugins: ['prettier-plugin-tailwindcss'],
   // 화살표 함수 식 매개변수 () 생략 여부 (ex: (a) => a)
   arrowParens: 'always',
   // 닫는 괄호(>) 위치 설정

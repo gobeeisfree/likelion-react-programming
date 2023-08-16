@@ -1,42 +1,30 @@
 import { useState } from 'react';
 
-// const getOne = () => 1;
-
 function LearnStateAndEffects() {
-  // 성(lastName), 이름(firstName)
-  const [lastName, setLastName] = useState('');
-  const [firstName, setFirstName] = useState('');
+  // 숫자 값 상태 관리
+  // 마우스의 x 좌표
+  const [mouseX, setMouseX] = useState(0);
+  // 마우스의 y 좌표
+  const [mouseY, setMouseY] = useState(0);
 
-  // 성 + 이름 (fullName) 출력
-  // 파생된 상태 (derived state)
-  const fullName = lastName + firstName;
+  const handlePrintMousePosition = (e) => {
+    setMouseX(e.clientX);
+    setMouseY(e.clientY);
+  };
 
+  // 객체 상태 관리
   return (
-    <div className="m-10 flex flex-col items-start gap-2" lang="en">
+    <div
+      className="m-10 flex flex-col items-start gap-2"
+      onMouseMove={handlePrintMousePosition}
+    >
       <h2 className="text-2xl uppercase text-indigo-600">
-        Learn State And Effects
+        상태 및 이펙트 학습하기
       </h2>
 
-      <h3>너의 이름은?</h3>
-
-      <input
-        type="text"
-        name="lastName"
-        aria-label="성"
-        placeholder="김"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-      />
-      <input
-        type="text"
-        name="firstName"
-        aria-label="이름"
-        placeholder="덕구"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-      />
-
-      <p>당신의 이름은 {fullName} 이군요!</p>
+      <output>
+        마우스 X 좌표: {mouseX} / 마우스 Y 좌표: {mouseY}
+      </output>
     </div>
   );
 }

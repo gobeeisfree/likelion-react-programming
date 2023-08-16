@@ -1,3 +1,4 @@
+import { useId } from 'react';
 import { useState } from 'react';
 
 // const getOne = () => 1;
@@ -12,15 +13,34 @@ function LearnStateAndEffects() {
   // console.log(count1);
   // console.log(count2);
   const [count, setCount] = useState(100);
-  const [step] = useState(12);
+  const [step, setStep] = useState(12);
 
   // 상태 정의와 상태 변경
+
+  // 관리가 까다로운 ID 속성 값을 자동 생성하는 훅
+  const stepperId = useId();
 
   return (
     <div className="m-10 flex flex-col items-start gap-2" lang="en">
       <h2 className="text-2xl uppercase text-indigo-600">
         Learn State And Effects {count}
       </h2>
+      <div className="flex items-center gap-2">
+        <label htmlFor={stepperId} className="text-base">
+          step
+        </label>
+        <input
+          type="number"
+          id={stepperId}
+          value={step}
+          onChange={(e) => {
+            const nextStep = Number(e.target.value);
+            setStep(nextStep);
+          }}
+          placeholder={step}
+          className="w-16 rounded-xl border border-slate-300 px-2 py-1"
+        />
+      </div>
       <button
         type="button"
         onClick={() => setCount(count + step)}

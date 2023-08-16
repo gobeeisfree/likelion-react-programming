@@ -1,5 +1,15 @@
 import { useState } from 'react';
 
+const initialRepository = {
+  id: 'repo-101',
+  title: 'yamoo9/likelion-FEQA',
+  link: 'https://github.com/yamoo9/likelion-FEQA',
+  profile: {
+    url: 'https://avatars.githubusercontent.com/u/1850554?s=16&v=4',
+    label: 'yamoo9',
+  },
+};
+
 function LearnStateAndEffects() {
   // 숫자 값 상태 관리
 
@@ -22,15 +32,16 @@ function LearnStateAndEffects() {
   // 배열 상태 관리
   // [10, 96]
 
-  const [repository, setRepository] = useState({
-    id: 'repo-101',
-    title: 'yamoo9/likelion-FEQA',
-    link: 'https://github.com/yamoo9/likelion-FEQA',
-    profile: {
-      url: 'https://avatars.githubusercontent.com/u/1850554?s=166v=4',
-      label: 'yamoo9',
-    },
-  });
+  const [repository, setRepository] = useState(initialRepository);
+
+  const handleSaveRepository = (e) => {
+    e.preventDefault();
+    console.log(repository);
+  };
+
+  const handleResetRepository = () => {
+    setRepository(initialRepository);
+  };
 
   return (
     <div
@@ -46,7 +57,7 @@ function LearnStateAndEffects() {
       </output>
 
       <h2 className="mt-10 text-2xl font-semibold">저장소 정보 수정</h2>
-      <form className="w-1/2">
+      <form className="w-1/2" onSubmit={handleSaveRepository}>
         <div className="flex w-full items-center gap-2">
           <label htmlFor="repoTitle" className="font-medium">
             타이틀 (title)
@@ -58,8 +69,11 @@ function LearnStateAndEffects() {
             value={repository.title}
             onChange={(e) => {
               setRepository({
-                ...repository,
+                // ...repository,
+                id: repository.id,
                 title: e.target.value,
+                link: repository.link,
+                profile: repository.profile,
               });
             }}
             className="flex-1 border-b-2 border-slate-400 bg-transparent p-1 placeholder:text-slate-400"
@@ -96,9 +110,12 @@ function LearnStateAndEffects() {
             value={repository.profile.label}
             onChange={(e) => {
               setRepository({
-                ...repository,
+                // ...repository,
+                // id: repository.id,
+                // title: repository.title,
                 profile: {
-                  ...repository.profile,
+                  // ...repository.profile,
+                  // url: repository.profile.url,
                   label: e.target.value,
                 },
               });
@@ -111,7 +128,11 @@ function LearnStateAndEffects() {
           <button type="submit" className="bg-sky-500 px-2.5 py-1.5 text-white">
             저장
           </button>
-          <button type="reset" className="bg-rose-500 px-2.5 py-1.5 text-white">
+          <button
+            type="reset"
+            onClick={handleResetRepository}
+            className="bg-rose-500 px-2.5 py-1.5 text-white"
+          >
             취소
           </button>
         </div>

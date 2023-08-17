@@ -4,6 +4,20 @@
    - 이펙트 콜백 함수 (effect callback function)
    - 이펙트 콜백 함수 실행 조건 설정 (dependencies)
    - 이펙트 클린업 함수 (cleanup)
+1. 서버 데이터 요청/응답
+   - 데이터 가져오기(fetch Data)
+     - Fetch API 활용
+   - useEffect 훅을 사용해 데이터 가져오기 상태 설정
+     - 대기(pending)
+     - 로딩(loading)
+     - 성공(success)
+     - 실패(error)
+   - Async 함수를 사용하는 방법
+1. PocketBase 백엔드 데이터베이스 솔루션
+   - 다운로드 및 서버 구동
+   - 콜렉션, 레코드, 필드 개념 이해
+   - 콜렉션 생성, 필드 추가
+   - API 규칙 설정 (접근 권한)
 
 # 8. 16
 

@@ -40,6 +40,7 @@ function LearnStateAndEffects() {
       <Spinner
         size={120}
         className="absolute left-1/2 top-1/2 z-[10000] -translate-x-1/2 -translate-y-1/2"
+        colors={['#ff0', '#f0f', '#0ff']}
       />
     );
   }

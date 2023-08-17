@@ -34,7 +34,7 @@ function Spinner({
           dur="1.282051282051282s"
           keyTimes="0;1"
           repeatCount="indefinite"
-          values="#93dbe9;#689cc5"
+          values={`${colors[0]};${colors[1]}`}
         ></animate>
       </circle>
       <circle cx="35" cy="75.981" r="5" fill={colors[1]}>
@@ -57,7 +57,7 @@ function Spinner({
           dur="1.282051282051282s"
           keyTimes="0;1"
           repeatCount="indefinite"
-          values="#689cc5;#5e6fa3"
+          values={`${colors[1]};${colors[2]}`}
         ></animate>
       </circle>
       <circle cx="35" cy="24.019" r="5" fill={colors[2]}>
@@ -80,7 +80,7 @@ function Spinner({
           dur="1.282051282051282s"
           keyTimes="0;1"
           repeatCount="indefinite"
-          values="#5e6fa3;#93dbe9"
+          values={`${colors[2]};${colors[0]}`}
         ></animate>
       </circle>
     </svg>

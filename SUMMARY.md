@@ -1,3 +1,10 @@
+# 8. 17
+
+1. 사이드 이펙트를 관리하는 이벤트 핸들러 및 useEffect 훅의 콜백 함수를 실습하고 요약 정리합니다.
+   - 이펙트 콜백 함수 (effect callback function)
+   - 이펙트 콜백 함수 실행 조건 설정 (dependencies)
+   - 이펙트 클린업 함수 (cleanup)
+
 # 8. 16
 
 1. Tailwind CSS 설치 및 구성(with 플러그인) 실습을 진행하였습니다.

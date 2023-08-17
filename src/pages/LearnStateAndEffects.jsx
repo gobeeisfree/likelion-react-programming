@@ -1,4 +1,47 @@
+import Spinner from '@/components/Spinner';
+import { useEffect, useState } from 'react';
+
 function LearnStateAndEffects() {
+  // 1. data
+  const [data, setData] = useState([]);
+  // 2. isLoading
+  const [isLoading, setIsLoading] = useState(false);
+  // 3. error
+  const [error, setError] = useState(null);
+
+  // side effect
+  // request data
+  useEffect(() => {
+    setIsLoading(true);
+
+    // async await
+    async function fetchTodos() {
+      // fetch api
+      const response = await fetch(
+        'http://127.0.0.1:8090/api/collections/todos/records'
+      );
+
+      // error?
+      if (!response.ok) {
+        // error handling
+      }
+
+      const data = await response.json();
+
+      console.log(data);
+    }
+
+    fetchTodos();
+  }, []);
+
+  if (isLoading) {
+    return (
+      <Spinner
+        size={120}
+        className="absolute left-1/2 top-1/2 z-[10000] -translate-x-1/2 -translate-y-1/2"
+      />
+    );
+  }
   return (
     <div className="m-10 flex flex-col items-start gap-2">
       <h2 className={`font-suit text-2xl text-indigo-600`}>

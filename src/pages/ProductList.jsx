@@ -2,8 +2,7 @@ import Spinner from '@/components/Spinner';
 import useFetchData from '@/hooks/useFetchData';
 import ProductItem from './ProductItem';
 
-const PB_PRODUCTS_ENDPOINT = `
-http://127.0.0.1:8090/api/collections/products/records`;
+const PB_PRODUCTS_ENDPOINT = `http://127.0.0.1:8090/api/collections/products/records`;
 
 function ProductList() {
   const { data, isLoading, error } = useFetchData(PB_PRODUCTS_ENDPOINT);
@@ -23,9 +22,9 @@ function ProductList() {
 
   return (
     <ul className="m-10 grid grid-cols-3">
-      {data &&
-        data.items &&
-        data.items?.map((item) => <ProductItem key={item.id} item={item} />)}
+      {data.items?.map((item) => (
+        <ProductItem key={item.id} item={item} />
+      ))}
     </ul>
   );
 }

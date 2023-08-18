@@ -1,14 +1,16 @@
-import HeaderBar from './HeaderBar';
+import { Outlet } from 'react-router-dom';
 import FooterBar from './FooterBar';
+import HeaderBar from './HeaderBar';
 
-function RootLayout(props) {
+function RootLayout() {
   return (
     <>
       <HeaderBar />
-      <main>{props.children}</main>
+      <main className="p-5">
+        <Outlet />
+      </main>
       <FooterBar />
     </>
   );
 }
-
 export default RootLayout;

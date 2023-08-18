@@ -1,5 +1,15 @@
 # 8. 18(금)
 
+## 커스텀 훅 & 클라이언트 측 라우팅
+
+1. 커스텀 훅(Custom Hook)을 사용해 재사용 로직(logic)을 분리합니다.
+1. 클라이언트 사이드 라우팅(CSR) 적용 방법을 학습합니다.
+   - React Router v6.4+ 라이브러리 설치
+   - React Router 컴포넌트를 활용해 라우터(Router) 구성
+1. 폼 상태(Form State) 관리 방법을 학습합니다. (PocketBase 인증(Authentication) 활용)
+   - 회원가입(Signup)
+   - 로그인(Signin)
+
 ## 컴포넌트 간 상태 공유 및 DOM 접근/조작
 
 1. 속성(props) 전달
@@ -11,19 +21,18 @@
 
 # 8. 17(목)
 
-## 컴포넌트 사이드 이펙트 & 클라이언트 측 라우팅
+## 컴포넌트 사이드 이펙트 & 백엔드 데이터베이스 솔루션
 
 1. 사이드 이펙트를 관리하는 이벤트 핸들러 및 useEffect 훅의 콜백 함수를 실습하고 요약 정리합니다.
    - 이펙트 콜백 함수 (effect callback function)
    - 이펙트 콜백 함수 실행 조건 설정 (dependencies)
    - 이펙트 클린업 함수 (cleanup)
-1. 커스텀 훅(Custom Hook)을 사용해 재사용 로직(logic)을 분리합니다.
-1. 폼 상태(Form State) 관리 방법을 학습합니다. (PocketBase 인증(Authentication) 활용)
-   - 회원가입(Signup)
-   - 로그인(Signin)
-1. 클라이언트 사이드 라우팅(CSR) 적용 방법을 학습합니다.
-   - React Router v6.4+ 라이브러리 설치
-   - React Router 컴포넌트를 활용해 라우터(Router) 구성
+1. PocketBase 다운로드 및 콜렉션 구성
+   - 운영체제 별 다운로드
+   - 애플리케이션 실행
+   - 콜렉션, 레코드, 필드 개념
+   - todos 콜렉션 생성 및 레코드 작성
+   - 컴포넌트에서 useEffect 훅을 사용해 데이터 가져오기
 
 # 8. 16(수)
 

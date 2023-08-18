@@ -1,3 +1,4 @@
+import Spinner from '@/components/Spinner';
 import { getPbImageURL, numberWithComma } from '@/utils';
 import { useEffect, useState } from 'react';
 
@@ -20,10 +21,12 @@ function ProductList() {
           signal: controller.signal,
         });
         const responseData = await response.json();
-        console.log(responseData);
         setData(responseData);
       } catch (error) {
-        setError(error);
+        // 통신 중단에 따른 오류가 아니라면 오류 설정
+        if (!(error instanceof DOMException)) {
+          setError(error);
+        }
       } finally {
         setIsLoading(false);
       }
@@ -32,11 +35,25 @@ function ProductList() {
 
     // StrictMode(x2, detect impure function component)
     // mount(1, 요청 1) → unmount (취소 1) → mount(2, 요청 1) -> 응답 1
-
     return () => {
       controller.abort();
     };
   }, []);
+
+  // 로딩중인 화면
+  if (isLoading) {
+    return <Spinner size={160} message="데이터 가져오는 중이에요." />;
+  }
+
+  // 오류가 발생한 경우 화면
+  if (error) {
+    return (
+      <div role="alert">
+        <h2>{error.type}</h2>
+        <p>{error.message}</p>
+      </div>
+    );
+  }
 
   // javascript statement
   // if (data) {

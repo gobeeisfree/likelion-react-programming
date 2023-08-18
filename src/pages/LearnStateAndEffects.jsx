@@ -31,8 +31,10 @@ function LearnStateAndEffects() {
         setStatus('success');
       })
       .catch((error) => {
-        setStatus('error');
-        setError(error);
+        if (!(error instanceof DOMException)) {
+          setStatus('error');
+          setError(error);
+        }
       });
 
     return () => {

@@ -10,9 +10,15 @@ function ProductList() {
   const [error, setError] = useState(null); // null | Error
 
   useEffect(() => {
+    const controller = new AbortController();
+
+    setIsLoading(true);
+
     async function fetchProducts() {
       try {
-        const response = await fetch(PB_PRODUCTS_ENDPOINT);
+        const response = await fetch(PB_PRODUCTS_ENDPOINT, {
+          signal: controller.signal,
+        });
         const responseData = await response.json();
         console.log(responseData);
         setData(responseData);
@@ -23,6 +29,13 @@ function ProductList() {
       }
     }
     fetchProducts();
+
+    // StrictMode(x2, detect impure function component)
+    // mount(1, 요청 1) → unmount (취소 1) → mount(2, 요청 1) -> 응답 1
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   // javascript statement

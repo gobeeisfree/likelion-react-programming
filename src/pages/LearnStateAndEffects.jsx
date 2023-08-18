@@ -18,9 +18,13 @@ function LearnStateAndEffects() {
   // 이펙트 필요!
   // React 외적인 일을 처리
   useEffect(() => {
+    // 중단(abort) 컨트롤러(controller) 생성
+    const controller = new AbortController();
+    const { signal } = controller;
     setStatus('loading');
+
     // fetch + promise, async function + fetch
-    fetch('http://127.0.0.1:8090/api/collections/todos/records')
+    fetch('http://127.0.0.1:8090/api/collections/todos/records', { signal })
       .then((response) => response.json())
       .then((responseData) => {
         setData(responseData);
@@ -30,6 +34,10 @@ function LearnStateAndEffects() {
         setStatus('error');
         setError(error);
       });
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   // 함수 몸체: 문 또는 식, 함수

@@ -25,8 +25,20 @@ function ProductList() {
     fetchProducts();
   }, []);
 
+  // javascript statement
+  // if (data) {
+  //   if ('items' in data) {
+  //     if (Array.isArray(data.items)) {
+  //       return data.items.map((item) => (
+  //         <ProductItem key={item.id} item={item} />
+  //       ));
+  //     }
+  //   }
+  // }
+
   return (
-    <ul>
+    <ul className="m-10 grid grid-cols-3">
+      {/* javascript expression */}
       {data &&
         data.items &&
         data.items?.map((item) => <ProductItem key={item.id} item={item} />)}
@@ -37,8 +49,12 @@ function ProductList() {
 function ProductItem({ item }) {
   return (
     <li>
-      <figure className="flex flex-col">
-        <img src={getPbImageURL(item, 'photo')} alt="" />
+      <figure className="flex flex-col items-center">
+        <img
+          src={getPbImageURL(item, 'photo')}
+          className="h-96 w-auto"
+          alt=""
+        />
         <figcaption className="flex flex-col">
           <span className="title">
             {item.title} [{item.color}]

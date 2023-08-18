@@ -3,12 +3,12 @@ import RootLayout from './layout/RootLayout';
 
 const Nav = () => (
   <nav>
-    <ul>
+    <ul className="flex gap-4 bg-slate-50/50 p-5 font-extralight shadow-lg">
       <li>
         <NavLink
           to="/"
           className={({ isActive }) =>
-            isActive ? 'font-black text-rose-600' : ''
+            isActive ? 'font-semibold text-rose-600' : ''
           }
         >
           Home
@@ -18,7 +18,7 @@ const Nav = () => (
         <NavLink
           to="/products"
           className={({ isActive }) =>
-            isActive ? 'font-black text-rose-600' : ''
+            isActive ? 'font-semibold text-rose-600' : ''
           }
         >
           Products
@@ -28,7 +28,7 @@ const Nav = () => (
         <NavLink
           to="/contact"
           className={({ isActive }) =>
-            isActive ? 'font-black text-rose-600' : ''
+            isActive ? 'font-semibold text-rose-600' : ''
           }
         >
           Contact

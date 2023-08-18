@@ -1,11 +1,14 @@
 import Spinner from '@/components/Spinner';
 import useFetchData from '@/hooks/useFetchData';
+import useMouse from '@/hooks/useMouse';
 import ProductItem from './ProductItem';
 
 const PB_PRODUCTS_ENDPOINT = `http://127.0.0.1:8090/api/collections/products/records`;
 
 function ProductList() {
   const { data, isLoading, error } = useFetchData(PB_PRODUCTS_ENDPOINT);
+  const { x, y } = useMouse();
+  console.log({ x, y });
 
   if (isLoading) {
     return <Spinner size={160} message="데이터 가져오는 중이에요." />;

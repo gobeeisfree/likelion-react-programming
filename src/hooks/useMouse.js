@@ -15,11 +15,13 @@ export default function useMouse() {
 
     // 구독(subscription)
     globalThis.addEventListener('mousemove', handleMouseMove);
+    const clearIntervalId = setInterval(() => console.count(), 300);
 
     // 구독 해지(unsubscription)
     // 클린 업
     return () => {
       globalThis.addEventListener('mousemove', handleMouseMove);
+      clearInterval(clearIntervalId);
     };
   }, []);
 

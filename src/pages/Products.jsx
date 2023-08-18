@@ -1,9 +1,7 @@
 function Products() {
-  return (
-    <div>
-      <h2>제품 목록 페이지</h2>
-    </div>
-  );
+  <div>
+    <h2 className="text-emerald-500">Products</h2>
+  </div>;
 }
 
 export default Products;

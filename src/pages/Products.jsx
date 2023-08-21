@@ -1,8 +1,8 @@
 import useDocumentTitle from '@/hooks/useDocumentTitle';
-import useFetchData from '@/hooks/useFetchData';
 import Spinner from '@/components/Spinner';
 import { getPbImageURL, numberWithComma } from '@/utils';
 import { Link } from 'react-router-dom';
+import useProductList from '@/hooks/useProductList';
 
 // PB → READ / CREATE / UPDATE / DELETE
 //HTTP Methods
@@ -14,11 +14,9 @@ import { Link } from 'react-router-dom';
 // useState
 // useEffect
 
-const endpoint = `${import.meta.env.VITE_PB_API}/collections/products/records`;
-
 function Products() {
   useDocumentTitle('제품 목록');
-  const { isLoading, data } = useFetchData(endpoint);
+  const { isLoading, data } = useProductList();
   if (isLoading) {
     return <Spinner size={160} />;
   }

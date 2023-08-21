@@ -21,32 +21,36 @@ function Products() {
     return <Spinner size={160} />;
   }
 
-  return (
-    <div>
-      <h1 className="mb-5 text-2xl text-indigo-950">Products</h1>
-      <ul className="grid grid-cols-3 gap-4">
-        {data.items?.map((item) => (
-          <li key={item.id} className="justify-self-center">
-            <Link to={`/product/edit/${item.id}`}>
-              <figure>
-                <img
-                  className="mx-auto h-40 object-cover"
-                  src={getPbImageURL(item, 'photo')}
-                  alt=""
-                />
-                <figcaption className="mt-2 flex flex-col items-center gap-1">
-                  <span>{item.title}</span>
-                  <span className="font-semibold">
-                    {numberWithComma(item.price)}
-                  </span>
-                </figcaption>
-              </figure>
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+  if (data) {
+    return (
+      <div>
+        <h1 className="mb-5 text-2xl text-indigo-950">Products</h1>
+        <ul className="grid grid-cols-3 gap-4">
+          {data.items?.map((item) => (
+            <li key={item.id} className="justify-self-center">
+              <Link to={`/product/edit/${item.id}`}>
+                <figure>
+                  <img
+                    className="mx-auto h-40 object-cover"
+                    src={getPbImageURL(item, 'photo')}
+                    alt=""
+                  />
+                  <figcaption className="mt-2 flex flex-col items-center gap-1">
+                    <span>
+                      {item.title} [{item.color}]
+                    </span>
+                    <span className="font-semibold">
+                      {numberWithComma(item.price)}
+                    </span>
+                  </figcaption>
+                </figure>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
 }
 
 export default Products;

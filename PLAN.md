@@ -1,3 +1,25 @@
+# 8. 22(화)
+
+## 컴포넌트 간 상태 공유 및 DOM 접근/조작
+
+1. 속성(props) 전달
+1. 상태 끌어올리기(Lifting state up)
+1. 프롭스 드릴링(Props Drilling) 현상
+1. 컨텍스트(Context)를 사용한 상태 공급
+1. Refs를 활용해 값을 참조하는 방법
+1. Refs를 활용해 DOM에 접근/조작하는 방법
+
+## 데이터 CRUD
+
+1. PocketBase 데이터 읽기/쓰기/수정/삭제
+1. 폼 상태(Form State) 관리
+
+## 인증
+
+1. PocketBase 인증(Authentication)
+1. 회원가입(Signup)
+1. 로그인(Signin)
+
 # 8. 21(월)
 
 ## 과제 검토
@@ -8,14 +30,6 @@
 ## 데이터 CRUD
 
 1. React Router 동적 라우팅(Dynamic Routing)
-1. PocketBase 데이터 읽기/쓰기/수정/삭제
-1. 폼 상태(Form State) 관리
-
-## 인증
-
-1. PocketBase 인증(Authentication)
-1. 회원가입(Signup)
-1. 로그인(Signin)
 
 # 8. 18(금)
 

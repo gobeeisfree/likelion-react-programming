@@ -4,7 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        suit: ['SUIT Variable'],
+        sans: ['SUIT Variable'],
       },
     },
   },

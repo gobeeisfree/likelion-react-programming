@@ -5,7 +5,7 @@ function Products() {
 
   return (
     <div>
-      <h2 className="text-emerald-500">Products</h2>
+      <h2 className="text-indigo-950">Products</h2>
     </div>
   );
 }

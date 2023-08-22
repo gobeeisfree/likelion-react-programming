@@ -5,58 +5,61 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  pocketbase:
+    specifier: ^0.16.0
+    version: 0.16.0
   react:
-    specifier: ^18.2.0
+    specifier: 18.2.0
     version: 18.2.0
   react-dom:
-    specifier: ^18.2.0
+    specifier: 18.2.0
     version: 18.2.0(react@18.2.0)
   react-router-dom:
-    specifier: ^6.15.0
+    specifier: 6.15.0
     version: 6.15.0(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
   '@types/react':
-    specifier: ^18.2.15
+    specifier: 18.2.15
     version: 18.2.15
   '@types/react-dom':
-    specifier: ^18.2.7
+    specifier: 18.2.7
     version: 18.2.7
   '@vitejs/plugin-react':
-    specifier: ^4.0.3
+    specifier: 4.0.3
     version: 4.0.3(vite@4.4.5)
   autoprefixer:
-    specifier: ^10.4.15
+    specifier: 10.4.15
     version: 10.4.15(postcss@8.4.28)
   eslint:
-    specifier: ^8.45.0
+    specifier: 8.45.0
     version: 8.45.0
   eslint-plugin-react:
-    specifier: ^7.32.2
+    specifier: 7.32.2
     version: 7.32.2(eslint@8.45.0)
   eslint-plugin-react-hooks:
-    specifier: ^4.6.0
+    specifier: 4.6.0
     version: 4.6.0(eslint@8.45.0)
   eslint-plugin-react-refresh:
-    specifier: ^0.4.3
+    specifier: 0.4.3
     version: 0.4.3(eslint@8.45.0)
   postcss:
-    specifier: ^8.4.28
+    specifier: 8.4.28
     version: 8.4.28
   postcss-import:
-    specifier: ^15.1.0
+    specifier: 15.1.0
     version: 15.1.0(postcss@8.4.28)
   prettier:
-    specifier: ^3.0.1
+    specifier: 3.0.1
     version: 3.0.1
   prettier-plugin-tailwindcss:
-    specifier: ^0.5.3
+    specifier: 0.5.3
     version: 0.5.3(prettier@3.0.1)
   tailwindcss:
-    specifier: ^3.3.3
+    specifier: 3.3.3
     version: 3.3.3
   vite:
-    specifier: ^4.4.5
+    specifier: 4.4.5
     version: 4.4.5
 
 packages:
@@ -1904,6 +1907,10 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
     dev: true
+
+  /pocketbase@0.16.0:
+    resolution: {integrity: sha512-sndPu4Mbu1Y2VefvO2gIa/No5aIdP6E5br9HUGomvDYSfkmGfBxJNkivJSSKlr9KwWnaF8otf14304UUeFGOrA==}
+    dev: false
 
   /postcss-import@15.1.0(postcss@8.4.28):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}

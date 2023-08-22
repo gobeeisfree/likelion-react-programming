@@ -1,8 +1,10 @@
-import useDocumentTitle from '@/hooks/useDocumentTitle';
 import Spinner from '@/components/Spinner';
+import useDocumentTitle from '@/hooks/useDocumentTitle';
+import useProductList from '@/hooks/useProductList';
+// import { useProducts } from '@/api/useProducts';
 import { getPbImageURL, numberWithComma } from '@/utils';
 import { Link } from 'react-router-dom';
-import useProductList from '@/hooks/useProductList';
+// import { useEffect } from 'react';
 
 // PB → READ / CREATE / UPDATE / DELETE
 //HTTP Methods
@@ -17,6 +19,20 @@ import useProductList from '@/hooks/useProductList';
 function Products() {
   useDocumentTitle('제품 목록');
   const { isLoading, data } = useProductList();
+
+  // const { status, data: sdkData, getProductList } = useProducts();
+
+  // useEffect(() => {
+  //   getProductList()
+  //     .then(() => {
+  //       console.log(sdkData);
+  //       console.log(status);
+  //     })
+  //     .catch(() => {
+  //       // console.log(status)
+  //     });
+  // }, []);
+
   if (isLoading) {
     return <Spinner size={160} />;
   }

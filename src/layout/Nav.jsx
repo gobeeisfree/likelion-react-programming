@@ -5,12 +5,12 @@ const Nav = () => (
     <ul className="flex gap-4  p-5 font-extralight">
       <li>
         <NavLink
-          to="/"
+          to="/signin"
           className={({ isActive }) =>
             isActive ? 'font-semibold text-rose-600' : ''
           }
         >
-          Home
+          Sign In
         </NavLink>
       </li>
       <li>

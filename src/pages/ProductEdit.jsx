@@ -2,6 +2,11 @@ import { useEffect, useId, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import useProductItem from '@/hooks/useProductItem';
 import Spinner from '@/components/Spinner';
+import {
+  useDelete as useDeleteProduct,
+  useUpdate as useUpdateProduct,
+} from '@/hooks/products/useProducts';
+import debounce from '@/utils/debounce';
 
 const initialFormState = {
   title: '',
@@ -21,6 +26,9 @@ function ProductEdit() {
 
   const [formState, setFormState] = useState(initialFormState);
 
+  const updateProduct = useUpdateProduct();
+  const deleteProduct = useDeleteProduct();
+
   useEffect(() => {
     if (!isLoading && data) {
       setFormState({
@@ -31,47 +39,53 @@ function ProductEdit() {
     }
   }, [isLoading, data]);
 
-  const handleChangeInput = ({ target }) => {
+  const handleChangeInput = debounce(({ target }) => {
     setFormState({
       ...formState,
       [target.name]: target.value,
     });
-  };
+  }, 500);
 
   const handleEditProduct = (e) => {
     e.preventDefault();
 
     // client → server(pb)
     // Content-Type: application/json
-    fetch(
-      `${
-        import.meta.env.VITE_PB_API
-      }/collections/products/records/${productId}`,
-      {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formState),
-      }
-    ).catch((error) => console.error(error));
+    updateProduct(productId, formState)
+      .then(() => navigate('/products'))
+      .catch((error) => console.error(error));
+    // fetch(
+    //   `${
+    //     import.meta.env.VITE_PB_API
+    //   }/collections/products/records/${productId}`,
+    //   {
+    //     method: 'PATCH',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify(formState),
+    //   }
+    // ).catch((error) => console.error(error));
   };
 
   const handleDeleteProduct = () => {
     const userConfirm = confirm('정말 지우시겠습니까?');
     if (userConfirm) {
-      fetch(
-        `${
-          import.meta.env.VITE_PB_API
-        }/collections/products/records/${productId}`,
-        {
-          method: 'DELETE',
-        }
-      )
-        .then(() => {
-          navigate('/products');
-        })
+      deleteProduct(productId)
+        .then(() => navigate('/products'))
         .catch((error) => console.error(error));
+      // fetch(
+      //   `${
+      //     import.meta.env.VITE_PB_API
+      //   }/collections/products/records/${productId}`,
+      //   {
+      //     method: 'DELETE',
+      //   }
+      // )
+      //   .then(() => {
+      //     navigate('/products');
+      //   })
+      //   .catch((error) => console.error(error));
     }
   };
 
@@ -93,7 +107,7 @@ function ProductEdit() {
               type="text"
               name="title"
               id={titleId}
-              value={formState.title}
+              defaultValue={formState.title}
               onChange={handleChangeInput}
             />
           </div>
@@ -104,7 +118,7 @@ function ProductEdit() {
               type="text"
               name="color"
               id={colorId}
-              value={formState.color}
+              defaultValue={formState.color}
               onChange={handleChangeInput}
             />
           </div>
@@ -115,7 +129,7 @@ function ProductEdit() {
               type="number"
               name="price"
               id={titleId}
-              value={formState.price}
+              defaultValue={formState.price}
               onChange={handleChangeInput}
             />
           </div>

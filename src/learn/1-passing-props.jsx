@@ -1,7 +1,9 @@
+import useDocumentTitle from '@/hooks/useDocumentTitle';
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
 
 function PassingProps() {
+  useDocumentTitle('Props 전달');
   return (
     <div className="PassingProps">
       <Parent />

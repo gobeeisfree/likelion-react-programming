@@ -1,3 +1,4 @@
+import useDocumentTitle from '@/hooks/useDocumentTitle';
 import debounce from '@/utils/debounce';
 import { useState, createContext, useContext, useReducer } from 'react';
 /* Context ------------------------------------------------------------------ */
@@ -59,6 +60,7 @@ const reducer = (state, action) => {
 };
 /* Component ---------------------------------------------------------------- */
 function ReactContextAPI() {
+  useDocumentTitle('상태 공유 Context API');
   // 상태
   const [color, setColor] = useState({
     fg: 'text-blue-50',

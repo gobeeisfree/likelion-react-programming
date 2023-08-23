@@ -1,6 +1,8 @@
+import useDocumentTitle from '@/hooks/useDocumentTitle';
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
 function PropsDrillingIssue() {
+  useDocumentTitle('속성(props) 드릴링 이슈');
   // 상태
   const [color, setColor] = useState({
     fg: 'text-blue-50',

@@ -1,7 +1,9 @@
+import useDocumentTitle from '@/hooks/useDocumentTitle';
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
 
 function LiftingStateUp() {
+  useDocumentTitle('상태 끌어올리기');
   const [color, setColor] = useState('#999');
   const handleChangeBgColor = (newColor) => setColor(newColor);
 

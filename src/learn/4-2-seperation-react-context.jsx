@@ -1,8 +1,10 @@
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
 import GrandParent from './partials/GrandParent';
+import useDocumentTitle from '@/hooks/useDocumentTitle';
 
 function ReactContextAPI() {
+  useDocumentTitle('Context 분리 관리');
   const [color, setColor] = useState({
     fg: 'text-blue-50',
     bg: '#1170a3',

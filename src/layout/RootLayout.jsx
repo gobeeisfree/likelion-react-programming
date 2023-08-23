@@ -10,9 +10,12 @@ function RootLayout({ displaySideMenu = false }) {
         {displaySideMenu && (
           <nav className="min-w-[100px] bg-slate-100 px-4 py-3">
             <h3 className="sr-only">학습 내비게이션 메뉴</h3>
-            <ul>
+            <ul className="flex flex-col gap-4">
               <li>
                 <Link to="/learn/01">Props 전달</Link>
+              </li>
+              <li>
+                <Link to="/learn/02">상태 끌어올리기</Link>
               </li>
             </ul>
           </nav>

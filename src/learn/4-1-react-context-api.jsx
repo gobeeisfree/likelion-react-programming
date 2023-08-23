@@ -1,31 +1,22 @@
 import debounce from '@/utils/debounce';
 import { useState, createContext, useContext, useReducer } from 'react';
-
 /* Context ------------------------------------------------------------------ */
-
 // Context ( Modern (Hooks) / Legacy (Context.Consumer + Render Props or HOC Pattern) )
-
 // JSX
 // React.createElement
-
 // Context 생성
 // React.createContext(초깃값) <- 읽기 전용
 // const [get] = useState(initialValue)
-
 // Context 공급자(Provider)
 // 값(value) <- 읽기/쓰기
 // const [get, set] = useState(initialValue)
-
 // Context 값 꺼내기(가져오기)
 // React.useContext
-
 /* -------------------------------------------------------------------------- */
-
 // 1. Context 생성
-// Theme 상태/업데이트 함수(dispatch) 공급
+// Theme 상태/업데이트 함수(dispach) 공급
 const ThemeContext = createContext();
-
-/* Reducer Function --------------------------------------------------------- */
+/* -------------------------------------------------------------------------- */
 const initialTheme = {
   currentMode: 'light',
   light: {
@@ -37,13 +28,11 @@ const initialTheme = {
     bg: 'black',
   },
 };
-
 // Action Types
 const RESET_THEME = 'RESET_THEME';
 const CHANGE_LIGHT_THEME = 'CHANGE_LIGHT_THEME';
-const CHANGE_DARK_THEME = 'CHANGE_DARK_THEME';
 const SWITCH_MODE = 'SWITCH_MODE';
-
+const CHANGE_DARK_THEME = 'CHANGE_DARK_THEME';
 // Reducer Function
 const reducer = (state, action) => {
   switch (action.type) {
@@ -68,16 +57,13 @@ const reducer = (state, action) => {
       return state;
   }
 };
-
 /* Component ---------------------------------------------------------------- */
-
 function ReactContextAPI() {
   // 상태
   const [color, setColor] = useState({
     fg: 'text-blue-50',
     bg: '#1170a3',
   });
-
   // 상태 업데이트 이벤트 핸들러
   const handleChangeBgColor = debounce(
     (newBgColor) =>
@@ -87,10 +73,8 @@ function ReactContextAPI() {
       })),
     600
   );
-
   // 컨텍스트 값으로 공급
   // 렌더 트리거 2가지
-
   // 1. React.useState
   // const [theme, setTheme] = useState({
   //   light: {
@@ -102,20 +86,17 @@ function ReactContextAPI() {
   //     bg: 'black',
   //   },
   // });
-
   // const usingStateValue = {
   //   theme,
   //   setTheme
   // };
-
   // 2. React.useReducer (like Redux)
   const [theme, dispatch] = useReducer(reducer, initialTheme);
-
   return (
     <ThemeContext.Provider
-      displayName="ThemeContextProvider"
+      displayName="ThemeContext.Provider"
       // 1. value={usingStateValue}
-      // 2. value={{theme, dispatch}}
+      // 2. value={{ theme, dispatch }}
       value={{ theme, dispatch }}
     >
       <div
@@ -127,11 +108,8 @@ function ReactContextAPI() {
     </ThemeContext.Provider>
   );
 }
-
 export default ReactContextAPI;
-
 /* -------------------------------------------------------------------------- */
-
 function GrandParent({ color, onChangeColor }) {
   return (
     <div
@@ -144,7 +122,6 @@ function GrandParent({ color, onChangeColor }) {
     </div>
   );
 }
-
 function Parent({ color, onChangeColor }) {
   return (
     <div
@@ -157,7 +134,6 @@ function Parent({ color, onChangeColor }) {
     </div>
   );
 }
-
 function Child({ color, onChangeColor }) {
   return (
     <div
@@ -170,22 +146,18 @@ function Child({ color, onChangeColor }) {
     </div>
   );
 }
-
 function GrandChild({ color, onChangeColor }) {
   // 2. 컨텍스트 값을 주입(Injection)
   const { theme, dispatch } = useContext(ThemeContext);
-
   // console.log(theme, dispatch);
-
   const currentTheme = theme[theme.currentMode];
-  // console.log(currentTheme);
-
   const handleSwitchThemeMode = () => {
+    // 리듀서 함수야 나는 테마 모드를 전환하고 싶어!!
+    /* action : javascript plain object */
     dispatch({
       type: SWITCH_MODE,
     });
   };
-
   return (
     <div
       className="GrandChild flex flex-col items-center justify-center rounded-md p-4 "
@@ -194,17 +166,20 @@ function GrandChild({ color, onChangeColor }) {
       }}
     >
       <p
-        className={`${color.fg} mb-2 text-center font-medium drop-shadow-md`}
-        style={{ backgroundColor: currentTheme.bg, color: currentTheme.fg }}
+        className={`${color.fg} mb-2 p-4 text-center font-extrabold drop-shadow-md`}
+        style={{
+          backgroundColor: currentTheme.bg,
+          color: currentTheme.fg,
+        }}
       >
         컨텍스트 공급자(Context Provider)를 사용해
         <br />
         데이터를 공급(provide)해주세요!
       </p>
       <button
-        className="my-2 border border-white p-2"
         type="button"
         onClick={handleSwitchThemeMode}
+        className="-x-4 my-2 border border-white p-2"
       >
         <span className="uppercase">
           {theme.currentMode.includes('light') ? 'dark' : 'light'}

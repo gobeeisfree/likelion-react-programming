@@ -34,15 +34,17 @@ const router = createBrowserRouter(
       <Route path="product/edit/:productId" element={<ProductEdit />} />
       <Route path="contact" element={<Contact />} />
       {/* 학습 주제 */}
-      <Route path="learn/01" element={<PassingProps />} />
-      <Route path="learn/02" element={<LiftingStateUp />} />
-      <Route path="learn/03" element={<PropsDrillingIssue />} />
-      <Route path="learn/04/01" element={<ReactContextAPI1 />} />
-      <Route path="learn/04/02" element={<ReactContextAPI2 />} />
-      <Route path="learn/05" element={<RefExampleMemoValues />} />
-      <Route path="learn/06" element={<RefExampleReferencingDOM />} />
-      <Route path="learn/07" element={<GSAP_Animation />} />
-      <Route path="learn/08" element={<FramerMotion_Animation />} />
+      <Route path="learn">
+        <Route path="01" element={<PassingProps />} />
+        <Route path="02" element={<LiftingStateUp />} />
+        <Route path="03" element={<PropsDrillingIssue />} />
+        <Route path="04/01" element={<ReactContextAPI1 />} />
+        <Route path="04/02" element={<ReactContextAPI2 />} />
+        <Route path="05" element={<RefExampleMemoValues />} />
+        <Route path="06" element={<RefExampleReferencingDOM />} />
+        <Route path="07" element={<GSAP_Animation />} />
+        <Route path="08" element={<FramerMotion_Animation />} />
+      </Route>
     </Route>
   )
 );

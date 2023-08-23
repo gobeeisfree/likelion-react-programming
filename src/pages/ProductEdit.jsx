@@ -6,12 +6,12 @@ import {
   useDelete as useDeleteProduct,
   useUpdate as useUpdateProduct,
 } from '@/hooks/products/useProducts';
-// import debounce from '@/utils/debounce';
+import debounce from '@/utils/debounce';
 
 const initialFormState = {
   title: '',
   color: '',
-  price: 0,
+  price: '',
 };
 
 function ProductEdit() {
@@ -39,20 +39,14 @@ function ProductEdit() {
     }
   }, [isLoading, data]);
 
-  // debounce
-  // const handleDebounceChangeInput = debounce(({ target }) => {
-  //   setFormState({
-  //     ...formState,
-  //     [target.name]: target.value,
-  //   });
-  // }, 500);
-
   const handleChangeInput = ({ target }) => {
     setFormState({
       ...formState,
       [target.name]: target.value,
     });
   };
+
+  const handleDebounceChangeInput = debounce(handleChangeInput, 500);
 
   const handleEditProduct = (e) => {
     e.preventDefault();
@@ -115,8 +109,8 @@ function ProductEdit() {
               type="text"
               name="title"
               id={titleId}
-              value={formState.title}
-              onChange={handleChangeInput}
+              defaultValue={formState.title}
+              onChange={handleDebounceChangeInput}
             />
           </div>
           {/* color */}
@@ -126,8 +120,8 @@ function ProductEdit() {
               type="text"
               name="color"
               id={colorId}
-              value={formState.color}
-              onChange={handleChangeInput}
+              defaultValue={formState.color}
+              onChange={handleDebounceChangeInput}
             />
           </div>
           {/* price */}
@@ -137,8 +131,9 @@ function ProductEdit() {
               type="number"
               name="price"
               id={titleId}
-              value={formState.price}
-              onChange={handleChangeInput}
+              step={100}
+              defaultValue={formState.price}
+              onChange={handleDebounceChangeInput}
             />
           </div>
           <div>

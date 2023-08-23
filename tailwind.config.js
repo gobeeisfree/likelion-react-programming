@@ -6,6 +6,7 @@ export default {
       fontFamily: {
         sans: ['SUIT Variable'],
       },
+      backgroundImage: { hero: "url('/hero.jpg')" },
     },
   },
   plugins: [],

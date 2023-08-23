@@ -11,13 +11,15 @@ import ProductEdit from './pages/ProductEdit';
 import Contact from './pages/Contact';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
+import PassingProps from './learn/1-passing-props';
 
 // 구버전 처럼 사용할 사용자를 위한 최신 방법
 // 배열 → JSX
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route path="/" element={<RootLayout displaySideMenu />}>
       <Route index element={<Home />} />
+      <Route path="learn/01" element={<PassingProps />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="signin" element={<SignIn />} />
       {/* <Route path="products" element={<Products />} /> */}

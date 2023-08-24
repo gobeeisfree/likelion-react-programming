@@ -8,6 +8,7 @@
 // 1. 이벤트 핸들러
 // 2. useEffect 훅
 import { useEffect, useState } from 'react';
+import { func } from 'prop-types';
 // 리액트: LearnStateAndEffects 컴포넌트를 다시 실행한다.
 // 리액트 렌더 트리거 효윤님이 요청했으니까.
 function LearnStateAndEffects() {
@@ -127,5 +128,9 @@ function CountButton({ onIncrement }) {
     </button>
   );
 }
+
+CountButton.propTypes = {
+  onIncrement: func,
+};
 
 export default LearnStateAndEffects;

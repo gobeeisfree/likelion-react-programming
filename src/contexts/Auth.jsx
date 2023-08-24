@@ -11,6 +11,7 @@
 
 import { createContext, useEffect, useState, useContext } from 'react';
 import pb from '@/api/pocketbase';
+import { string, node } from 'prop-types';
 
 // Context 생성
 const AuthContext = createContext();
@@ -59,7 +60,7 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
     return await pb.authStore.clear();
   };
 
-  const secession = async (recordId) => {
+  const cancelMembership = async (recordId) => {
     return await pb.collection('users').delete(recordId);
   };
 
@@ -68,7 +69,7 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
     signUp,
     signIn,
     signOut,
-    secession,
+    cancelMembership,
   };
 
   return (
@@ -77,6 +78,11 @@ function AuthProvider({ displayName = 'AuthProvider', children }) {
     </AuthContext.Provider>
   );
 }
+
+AuthProvider.propTypes = {
+  displayName: string,
+  children: node.isRequired, // React.ReactNode
+};
 
 export default AuthProvider;
 

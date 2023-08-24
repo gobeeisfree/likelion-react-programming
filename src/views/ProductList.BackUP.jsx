@@ -1,6 +1,7 @@
 import Spinner from '@/components/Spinner';
 import { getPbImageURL, numberWithComma } from '@/utils';
 import { useEffect, useState } from 'react';
+import { PRODUCT_TYPE } from './ProductItem';
 
 const PB_PRODUCTS_ENDPOINT = `
 http://127.0.0.1:8090/api/collections/products/records`;
@@ -95,5 +96,9 @@ function ProductItem({ item }) {
     </li>
   );
 }
+
+ProductItem.propTypes = {
+  item: PRODUCT_TYPE,
+};
 
 export default ProductList;

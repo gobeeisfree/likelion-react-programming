@@ -70,6 +70,26 @@ function SignIn() {
         </div>
       </form>
       <Link to="/signup">회원가입</Link>
+      <button
+        type="button"
+        className="ml-4"
+        onClick={async () => {
+          if (confirm('정말 탈퇴하시겠습니까?')) {
+            if (pb.authStore.model) {
+              try {
+                await pb.collection('users').delete(pb.authStore.model.id);
+                console.log('탈퇴 성공');
+              } catch (error) {
+                console.error(error);
+              }
+            } else {
+              console.log('현재 로그인 된 사용자가 없습니다.');
+            }
+          }
+        }}
+      >
+        탈퇴
+      </button>
     </div>
   );
 }

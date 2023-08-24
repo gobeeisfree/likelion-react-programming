@@ -38,7 +38,7 @@ function RootLayout({ displaySideMenu = false }) {
                 <Link to="/learn/05">값을 기억하기 위한 Refs</Link>
               </li>
               <li>
-                <Link to="/learn/06">6번</Link>
+                <Link to="/learn/06">DOM 요소를 참조하는 Refs</Link>
               </li>
               <li>
                 <Link to="/learn/07">7번</Link>

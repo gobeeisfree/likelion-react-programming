@@ -1,3 +1,4 @@
+import { bool, oneOf } from 'prop-types';
 import styles from './Switcher.module.css';
 
 function Switcher({
@@ -24,6 +25,12 @@ function Switcher({
   );
 }
 
-<Switcher />;
+Switcher.propTypes = {
+  on: bool,
+  onText: 'string',
+  offText: 'string',
+  label: 'string',
+  size: oneOf(['sm', 'md', 'lg']),
+};
 
 export default Switcher;

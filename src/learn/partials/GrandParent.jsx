@@ -12,3 +12,5 @@ export default function GrandParent({ color, onChangeColor }) {
     </div>
   );
 }
+
+GrandParent.propTypes = Parent.propTypes;

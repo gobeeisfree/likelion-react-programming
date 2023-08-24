@@ -1,71 +1,67 @@
-import useDocumentTitle from '@/hooks/useDocumentTitle';
-import { useLayoutEffect } from 'react';
+import { gsap } from 'gsap';
+import { useLayoutEffect, useRef } from 'react';
 
 function RefExampleReferencingDOM() {
-  useDocumentTitle('DOM 요소를 참조하는 Refs');
   return (
     <>
-      <h2 className="mb-4">컴포넌트 내부의 DOM 요소를 참조하는 Refs</h2>
+      <h2 className="mb-10">컴포넌트 내부의 DOM 요소를 직접 참조하는 Refs</h2>
+      <Circle />
+      <Circle />
       <Circle />
     </>
   );
 }
 
+// React 컴포넌트는 순수해야 한다. (렌더링 프로세스 순수해야 하기 때문에)
+// Web Animation, GSAP, jQuery와 같은 API는 명령형 프로그래밍이다.
+// 그러므로 컴포넌트 내부에 직접 사용할 수 없다.
+// 명령형 프로그래밍을 작성할 수 있는 구간은 2군데이다.
+// 1. useLayoutEffect 훅 (브라우저 페인팅 이전에 실행)
+// 2. Event Handler(Listener)
+//
+// React 요소(가상)가 실제 DOM에 렌더링 된 후 요소를 참조하려면?
+// 기존의 document.getElementById, document.querySelector 사용하는 것이 권장되지 않는다.
+// useRef 훅을 사용해 Refs 객체 생성하여 활용.
+// const anyRef = useRef(null)
+
+// 1. Refs 생성
+// 2. JSX 요소 ref 속성(prop)에 Refs 연결
+// 3. useLayoutEffect 훅 안에서 Refs 현재(current) 값으로 명령형 프로그래밍
+
 function Circle() {
-  // useEffect 콜백 보다 먼저 실행
-  // 리액트 렌더링 프로세스
-  // 1. 렌더 트리거
-  // 2. 컴포넌트 렌더링
-  // 3. DOM 커밋
-  // - useLayoutEffect() 콜백
-  // 브라우저 렌더링 프로세스
-  // 4. 브라우저 페이팅
-  // - useEffect() 콜백
+  // DOM 요소(circle)를 참조하기 위한 Refs 생성
+  const circleRef = useRef(null); // { current: null }
 
+  // 이펙트 영역
   useLayoutEffect(() => {
-    // Javascript Animation API
-    // 참고:
-    //   https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
-    //   https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect#parameters
-    //   https://easings.co
-
-    // figure 요소가 단 하나만 존재할 것이다. (보장 못함)
-    // .circle 단 하나만 존재할 것이다. (보장 못함)
-    // #circle은 단 하나만 존재할 것이다. (보장?)
-    const circleElement = document.getElementById('circle');
-    const handleMoveX = (e) => {
-      e.currentTarget.animate(
-        /* keyframes */
-        // { transform: ['translateX(0)', 'translateX(360px)'] },
-        [
-          /* keyframe {} */
-          { transform: 'translateX(0)' }, // from | initial
-          { transform: 'translateX(360px)' }, // to | animate
-        ],
-        /* options */
-        {
-          duration: 3000,
-          iterations: Infinity,
-          direction: 'alternate',
-          fill: 'forwards',
-          easing: 'cubic-bezier(0.86,0,0.07,1)',
-        }
-      );
-    };
-
-    // 이벤트 연결
-    circleElement.addEventListener('click', handleMoveX);
-
-    // 연결된 이벤트 정리
-    return () => {
-      circleElement.removeEventListener('click', handleMoveX);
-    };
+    console.log(circleRef.current);
+    // const circleElement = document.getElementById('circle');
+    // gsap.set(circleElement, { scale: 0.5 });
+    // const handleMoveX = (e) => {
+    //   gsap.to(e.currentTarget, { scale: 1.5 });
+    // };
+    // circleElement.addEventListener('click', handleMoveX);
+    // return () => {
+    //   circleElement.removeEventListener('click', handleMoveX);
+    // };
   }, []);
+
+  // 이벤트 핸들러
+  const handleEnter = ({ currentTarget }) => {
+    gsap.to(currentTarget, { opacity: 0.5, scale: 4 });
+  };
+  const handleLeave = ({ currentTarget }) => {
+    gsap.to(currentTarget, { opacity: 1, scale: 1 });
+  };
+
   return (
     <figure
+      ref={circleRef}
       role="none"
       id="circle"
-      className="circle h-16 w-16 rounded-full bg-yellow-400"
+      onPointerEnter={handleEnter}
+      onPointerLeave={handleLeave}
+      className="h-16 w-16 rounded-full bg-yellow-400"
     />
   );
 }

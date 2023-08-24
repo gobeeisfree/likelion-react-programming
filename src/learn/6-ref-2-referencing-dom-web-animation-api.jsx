@@ -5,7 +5,7 @@ function RefExampleReferencingDOM() {
   useDocumentTitle('DOM 요소를 참조하는 Refs');
   return (
     <>
-      <h2 className="mb-4">컴포넌트 내부의 DOM 요소를 참조하는 Refs</h2>
+      <h2 className="mb-10">컴포넌트 내부의 DOM 요소를 참조하는 Refs</h2>
       <Circle />
     </>
   );

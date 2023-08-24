@@ -35,16 +35,16 @@ function RootLayout({ displaySideMenu = false }) {
                 <Link to="/learn/04/02">Context 분리 관리</Link>
               </li>
               <li>
-                <Link to="/learn/05">속성(props)드릴링 이슈</Link>
+                <Link to="/learn/05">값을 기억하기 위한 Refs</Link>
               </li>
               <li>
-                <Link to="/learn/06">속성(props)드릴링 이슈</Link>
+                <Link to="/learn/06">6번</Link>
               </li>
               <li>
-                <Link to="/learn/07">속성(props)드릴링 이슈</Link>
+                <Link to="/learn/07">7번</Link>
               </li>
               <li>
-                <Link to="/learn/08">속성(props)드릴링 이슈</Link>
+                <Link to="/learn/08">8번</Link>
               </li>
             </ul>
           </nav>

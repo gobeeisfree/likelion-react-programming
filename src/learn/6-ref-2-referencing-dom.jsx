@@ -1,44 +1,124 @@
-import { gsap } from 'gsap';
+import useDocumentTitle from '@/hooks/useDocumentTitle';
 import { useLayoutEffect, useRef } from 'react';
 
 function RefExampleReferencingDOM() {
+  useDocumentTitle('DOM 요소를 참조하는 Refs');
   return (
     <>
-      <h2 className="mb-10">컴포넌트 내부의 DOM 요소를 직접 참조하는 Refs</h2>
-      <div className="flex gap-10">
-        <Circle />
-        <Circle />
-        <Circle />
-      </div>
+      <h2>컴포넌트 내부의 DOM 요소를 직접 참조하는 Refs</h2>
+      <p className="mb-4">원에 클릭한 후, 애니메이션을 재생/정지해보세요.</p>
+      <Circle />
     </>
   );
 }
 
 function Circle() {
-  const componentRef = useRef(null);
-  const imageRef = useRef(null);
+  const circleRef = useRef(null);
+  const animationRef = useRef(null);
+
+  // useEffect 콜백 보다 먼저 실행
+  // 리액트 렌더링 프로세스
+  // 1. 렌더 트리거
+  // 2. 컴포넌트 렌더링
+  // 3. DOM 커밋
+  // - useLayoutEffect() 콜백 (GSAP 문서 참고)
+  // 브라우저 렌더링 프로세스
+  // 4. 브라우저 페인팅
+  // - useEffect() 콜백
+
+  const settingAnimation = () =>
+    (animationRef.current = circleRef.current.animate(
+      /* keyframes: keyframe[]*/
+      [
+        /* keyframe {} */
+        { transform: 'translateX(0)' }, // from | initial
+        { transform: 'translateX(360px)' }, // to | animate
+      ],
+      /* options */
+      {
+        duration: 2000,
+        iterations: Infinity,
+        direction: 'alternate',
+        easing: 'cubic-bezier(0.72,-0.28,0.16,1.23)',
+        fill: 'forwards',
+      }
+    ));
 
   useLayoutEffect(() => {
-    const context = gsap.context(() => {
-      // CSS 선택자 사용하기 (GSAP 사용자 방식)
-      // gsap.to('img', {});
+    // Web Animation API
+    // 참고:
+    //   https://developer.mozilla.org/en-US/docs/Web/API/Element/animate
+    //   https://developer.mozilla.org/en-US/docs/Web/API/KeyframeEffect/KeyframeEffect#parameters
+    //   https://easings.co
 
-      // 2. Refs 사용하기 (React 방식)
-      gsap.to(imageRef.current, { rotate: 360 });
-    }, componentRef);
+    // figure 요소가 단 하나만 존재할 것이다. (보장 못함)
+    // .circle 단 하나만 존재할 것이다. (보장 못함)
+    // #circle은 단 하나만 존재할 것이다. (보장?!)
 
+    const handleMoveX = () => {
+      settingAnimation();
+    };
+
+    const circleElement = circleRef.current;
+
+    // 이벤트 연결
+    circleElement.addEventListener('click', handleMoveX);
+
+    // 연결된 이벤트 정리
     return () => {
-      context.revert();
+      circleElement.removeEventListener('click', handleMoveX);
     };
   }, []);
+
+  const handlePlayAnimation = () => {
+    if (!animationRef.current) {
+      settingAnimation();
+    } else {
+      animationRef.current.play();
+    }
+  };
+
+  const handlePauseAnimation = () => {
+    if (animationRef.current) {
+      animationRef.current.pause();
+    }
+  };
+
+  // Video, Audio
+  // play(), pause()
+  // stop: pause() && currentTime = 0
+  // const handleStopAnimation = () => {
+  //   if (animationRef.current) {
+  //     // stop() 사용자 구현
+  //     animationRef.current.pause();
+  //     animationRef.current.currentTime = 0;
+  //   }
+  // }
+
   return (
-    <figure
-      ref={componentRef}
-      role="none"
-      className="grid h-16 w-16 place-content-center rounded-full bg-yellow-400"
-    >
-      <img ref={imageRef} src="/vite.svg" alt="Vite" />
-    </figure>
+    <>
+      <div className="mb-5 flex gap-2">
+        <button
+          type="button"
+          className="rounded-md border border-slate-300 px-2.5 py-1.5 shadow-lg"
+          onClick={handlePlayAnimation}
+        >
+          PLAY
+        </button>
+        <button
+          type="button"
+          className="rounded-md border border-slate-300 px-2.5 py-1.5 shadow-lg"
+          onClick={handlePauseAnimation}
+        >
+          PAUSE
+        </button>
+      </div>
+      <figure
+        role="none"
+        ref={circleRef}
+        className="h-16 w-16 rounded-full bg-yellow-400"
+      />
+    </>
   );
 }
 

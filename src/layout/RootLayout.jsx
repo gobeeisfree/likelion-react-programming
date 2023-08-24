@@ -41,10 +41,13 @@ function RootLayout({ displaySideMenu = false }) {
                 <Link to="/learn/06">DOM 요소를 참조하는 Refs</Link>
               </li>
               <li>
-                <Link to="/learn/07">7번</Link>
+                <Link to="/learn/07/01">GSAP 애니메이션</Link>
               </li>
               <li>
-                <Link to="/learn/08">8번</Link>
+                <Link to="/learn/07/02">GSAP 컨텍스트</Link>
+              </li>
+              <li>
+                <Link to="/learn/08">Framer Motion 애니메이션</Link>
               </li>
             </ul>
           </nav>

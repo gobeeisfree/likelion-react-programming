@@ -18,8 +18,9 @@ import ReactContextAPI1 from './learn/4-1-react-context-api';
 import ReactContextAPI2 from './learn/4-2-seperation-react-context';
 import RefExampleMemoValues from './learn/5-ref-1-memo-values';
 import RefExampleReferencingDOM from './learn/6-ref-2-referencing-dom';
-import GSAP_Animation from './learn/7-ref-3-gsap-animation';
-import FramerMotion_Animation from './learn/8-framer-motion-declaration-animation';
+import GSAP_Animation from './learn/7-1-ref-3-gsap-animation';
+import GSAP_Context from './learn/7-2-ref-3-gsap-context';
+import FramerMotion_Animation from './learn/8-framer-motion';
 
 // 구버전 처럼 사용할 사용자를 위한 최신 방법
 // 배열 → JSX
@@ -42,7 +43,8 @@ const router = createBrowserRouter(
         <Route path="04/02" element={<ReactContextAPI2 />} />
         <Route path="05" element={<RefExampleMemoValues />} />
         <Route path="06" element={<RefExampleReferencingDOM />} />
-        <Route path="07" element={<GSAP_Animation />} />
+        <Route path="07/01" element={<GSAP_Animation />} />
+        <Route path="07/02" element={<GSAP_Context />} />
         <Route path="08" element={<FramerMotion_Animation />} />
       </Route>
     </Route>

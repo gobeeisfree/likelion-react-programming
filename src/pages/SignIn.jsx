@@ -16,11 +16,8 @@ function SignIn() {
 
     const { email, password } = formState;
 
-    const authDate = await pb
-      .collection('users')
-      .authWithPassword(email, password);
+    await pb.collection('users').authWithPassword(email, password);
 
-    console.log(authDate);
     navigate('/');
   };
 

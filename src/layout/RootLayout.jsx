@@ -1,5 +1,5 @@
-import { Outlet, Link } from 'react-router-dom';
 import { bool } from 'prop-types';
+import { Link, Outlet } from 'react-router-dom';
 import FooterBar from './FooterBar';
 import HeaderBar from './HeaderBar';
 

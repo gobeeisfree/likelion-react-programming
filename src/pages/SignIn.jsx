@@ -1,8 +1,8 @@
 import pb from '@/api/pocketbase';
+import { useAuth } from '@/contexts/Auth';
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '@/contexts/Auth';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SignIn() {
   const navigate = useNavigate();

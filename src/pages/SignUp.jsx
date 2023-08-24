@@ -1,7 +1,7 @@
 import pb from '@/api/pocketbase';
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 function SignUp() {
   const navigate = useNavigate();

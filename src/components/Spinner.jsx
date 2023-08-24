@@ -1,4 +1,4 @@
-import { string, number, arrayOf } from 'prop-types';
+import { arrayOf, number, string } from 'prop-types';
 function Spinner({
   size = 200,
   message = '로딩 중...',

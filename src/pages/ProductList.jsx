@@ -1,8 +1,8 @@
+import useProductList from '@/api/useProductList';
 import Spinner from '@/components/Spinner';
 import useDocumentTitle from '@/hooks/useDocumentTitle';
 import { getPbImageURL, numberWithComma } from '@/utils';
 import { Link } from 'react-router-dom';
-import useProductList from '@/api/useProductList';
 
 // PB → READ / CREATE / UPDATE / DELETE
 //HTTP Methods

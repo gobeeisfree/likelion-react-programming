@@ -1,12 +1,12 @@
-import { useEffect, useId, useState } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
-import useProductItem from '@/hooks/useProductItem';
 import Spinner from '@/components/Spinner';
 import {
   useDelete as useDeleteProduct,
   useUpdate as useUpdateProduct,
 } from '@/hooks/products/useProducts';
+import useProductItem from '@/hooks/useProductItem';
 import debounce from '@/utils/debounce';
+import { useEffect, useId, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 const initialFormState = {
   title: '',

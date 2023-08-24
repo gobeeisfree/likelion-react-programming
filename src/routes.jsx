@@ -3,14 +3,8 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
 } from 'react-router-dom';
+import ProtectRoute from './components/ProtectRoute';
 import RootLayout from './layout/RootLayout';
-import Home from './pages/Home';
-import ProductList from './pages/ProductList';
-// import Products from './pages/Products';
-import ProductEdit from './pages/ProductEdit';
-import Contact from './pages/Contact';
-import SignUp from './pages/SignUp';
-import SignIn from './pages/SignIn';
 import PassingProps from './learn/1-passing-props';
 import LiftingStateUp from './learn/2-lifting-state-up';
 import PropsDrillingIssue from './learn/3-props-drilling-issue';
@@ -21,18 +15,28 @@ import RefExampleReferencingDOM from './learn/6-ref-2-referencing-dom';
 import GSAP_Animation from './learn/7-1-ref-3-gsap-animation';
 import GSAP_Context from './learn/7-2-ref-3-gsap-context';
 import FramerMotion_Animation from './learn/8-framer-motion';
+import Contact from './pages/Contact';
+import Home from './pages/Home';
+import ProductEdit from './pages/ProductEdit';
+import ProductList from './pages/ProductList';
+import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 
-// 구버전 처럼 사용할 사용자를 위한 최신 방법
-// 배열 → JSX
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout displaySideMenu={false} />}>
       <Route index element={<Home />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="signin" element={<SignIn />} />
-      {/* <Route path="products" element={<Products />} /> */}
       <Route path="products" element={<ProductList />} />
-      <Route path="product/edit/:productId" element={<ProductEdit />} />
+      <Route
+        path="product/edit/:productId"
+        element={
+          <ProtectRoute>
+            <ProductEdit />
+          </ProtectRoute>
+        }
+      />
       <Route path="contact" element={<Contact />} />
       {/* 학습 주제 */}
       <Route path="learn">
@@ -50,19 +54,5 @@ const router = createBrowserRouter(
     </Route>
   )
 );
-
-// 최신 방법(기본 방법)
-// 배열 → 객체
-// const router = createBrowserRouter([
-//   {
-//     path: '/',
-//     element: <RootLayout />,
-//     children: [
-//       { index: true, element: <Home /> },
-//       { path: 'products', element: <Products /> },
-//       { path: 'contact', element: <Contact /> },
-//     ],
-//   },
-// ]);
 
 export default router;

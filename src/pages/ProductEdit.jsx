@@ -6,6 +6,7 @@ import {
 import useProductItem from '@/hooks/useProductItem';
 import debounce from '@/utils/debounce';
 import { useEffect, useId, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { useNavigate, useParams } from 'react-router-dom';
 
 const initialFormState = {
@@ -98,6 +99,9 @@ function ProductEdit() {
   if (data) {
     return (
       <>
+        <Helmet>
+          <title>Product Edit - ReactBird</title>
+        </Helmet>
         <h2 className="text-center text-2xl">
           {data.title} [{data.color}] 수정 폼
         </h2>

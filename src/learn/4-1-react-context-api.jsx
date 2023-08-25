@@ -1,6 +1,6 @@
-import useDocumentTitle from '@/hooks/useDocumentTitle';
 import debounce from '@/utils/debounce';
-import { useState, createContext, useContext, useReducer } from 'react';
+import { createContext, useContext, useReducer, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 /* Context ------------------------------------------------------------------ */
 // Context ( Modern (Hooks) / Legacy (Context.Consumer + Render Props or HOC Pattern) )
 // JSX
@@ -60,7 +60,6 @@ const reducer = (state, action) => {
 };
 /* Component ---------------------------------------------------------------- */
 function ReactContextAPI() {
-  useDocumentTitle('상태 공유 Context API');
   // 상태
   const [color, setColor] = useState({
     fg: 'text-blue-50',
@@ -161,41 +160,46 @@ function GrandChild({ color, onChangeColor }) {
     });
   };
   return (
-    <div
-      className="GrandChild flex flex-col items-center justify-center rounded-md p-4 "
-      style={{
-        backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 80%)`,
-      }}
-    >
-      <p
-        className={`${color.fg} mb-2 p-4 text-center font-extrabold drop-shadow-md`}
+    <>
+      <Helmet>
+        <title>상태 공유 Context API</title>
+      </Helmet>
+      <div
+        className="GrandChild flex flex-col items-center justify-center rounded-md p-4 "
         style={{
-          backgroundColor: currentTheme.bg,
-          color: currentTheme.fg,
+          backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 80%)`,
         }}
       >
-        컨텍스트 공급자(Context Provider)를 사용해
-        <br />
-        데이터를 공급(provide)해주세요!
-      </p>
-      <button
-        type="button"
-        onClick={handleSwitchThemeMode}
-        className="-x-4 my-2 border border-white p-2"
-      >
-        <span className="uppercase">
-          {theme.currentMode.includes('light') ? 'dark' : 'light'}
-        </span>{' '}
-        테마 스위치
-      </button>
-      <input
-        type="color"
-        aria-label="배경 색상"
-        defaultValue={color.bg}
-        onChange={(e) => {
-          onChangeColor(e.target.value);
-        }}
-      />
-    </div>
+        <p
+          className={`${color.fg} mb-2 p-4 text-center font-extrabold drop-shadow-md`}
+          style={{
+            backgroundColor: currentTheme.bg,
+            color: currentTheme.fg,
+          }}
+        >
+          컨텍스트 공급자(Context Provider)를 사용해
+          <br />
+          데이터를 공급(provide)해주세요!
+        </p>
+        <button
+          type="button"
+          onClick={handleSwitchThemeMode}
+          className="-x-4 my-2 border border-white p-2"
+        >
+          <span className="uppercase">
+            {theme.currentMode.includes('light') ? 'dark' : 'light'}
+          </span>{' '}
+          테마 스위치
+        </button>
+        <input
+          type="color"
+          aria-label="배경 색상"
+          defaultValue={color.bg}
+          onChange={(e) => {
+            onChangeColor(e.target.value);
+          }}
+        />
+      </div>
+    </>
   );
 }

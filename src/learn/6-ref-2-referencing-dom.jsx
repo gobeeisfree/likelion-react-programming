@@ -1,8 +1,7 @@
-import useDocumentTitle from '@/hooks/useDocumentTitle';
 import { useLayoutEffect, useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 function RefExampleReferencingDOM() {
-  useDocumentTitle('DOM 요소를 참조하는 Refs');
   return (
     <>
       <h2>컴포넌트 내부의 DOM 요소를 직접 참조하는 Refs</h2>
@@ -97,6 +96,9 @@ function Circle() {
 
   return (
     <>
+      <Helmet>
+        <title>DOM 요소를 참조하는 Refs</title>
+      </Helmet>
       <div className="mb-5 flex gap-2">
         <button
           type="button"

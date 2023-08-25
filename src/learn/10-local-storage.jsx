@@ -1,5 +1,6 @@
 import useStorage from '@/hooks/useStorage';
 import { useRef } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 function LocalStorage() {
   const inputRef = useRef(null);
@@ -7,6 +8,9 @@ function LocalStorage() {
 
   return (
     <>
+      <Helmet>
+        <title>로컬 스토리지 활용 인증 상태 유지</title>
+      </Helmet>
       <h2>로컬 스토리지 관리</h2>
 
       <div className="flex gap-2">

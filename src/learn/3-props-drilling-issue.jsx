@@ -1,8 +1,7 @@
-import useDocumentTitle from '@/hooks/useDocumentTitle';
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 function PropsDrillingIssue() {
-  useDocumentTitle('속성(props) 드릴링 이슈');
   // 상태
   const [color, setColor] = useState({
     fg: 'text-blue-50',
@@ -69,22 +68,27 @@ export function Child({ color, onChangeColor }) {
 
 export function GrandChild({ color, onChangeColor }) {
   return (
-    <div
-      className="GrandChild flex flex-col items-center justify-center rounded-md p-4 "
-      style={{
-        backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 80%)`,
-      }}
-    >
-      <p className={`${color.fg} mb-2`}>상태 데이터를 제게 주세요!</p>
-      <input
-        type="color"
-        aria-label="배경 색상"
-        defaultValue={color.bg}
-        onChange={(e) => {
-          onChangeColor(e.target.value);
+    <>
+      <Helmet>
+        <title>속성(props) 드릴링 이슈</title>
+      </Helmet>
+      <div
+        className="GrandChild flex flex-col items-center justify-center rounded-md p-4 "
+        style={{
+          backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 80%)`,
         }}
-      />
-    </div>
+      >
+        <p className={`${color.fg} mb-2`}>상태 데이터를 제게 주세요!</p>
+        <input
+          type="color"
+          aria-label="배경 색상"
+          defaultValue={color.bg}
+          onChange={(e) => {
+            onChangeColor(e.target.value);
+          }}
+        />
+      </div>
+    </>
   );
 }
 export default PropsDrillingIssue;

@@ -1,11 +1,9 @@
-import useDocumentTitle from '@/hooks/useDocumentTitle';
 import { numberWithComma } from '@/utils';
 import { arrayOf, bool, number, shape, string } from 'prop-types';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 function ComponentPropTypes() {
-  useDocumentTitle('Prop Types 유효성 검사');
-
   const [screencast] = useState({
     id: 'kciskdfkijc',
     title: '화면 공유',
@@ -34,17 +32,22 @@ function ComponentPropTypes() {
   const { id, title, tags, isOnline, price } = screencast;
 
   return (
-    <div>
-      <h2>ComponentPropTypes</h2>
-      <ScreenCast
-        id={id}
-        title={title}
-        tags={tags}
-        isOnline={isOnline}
-        price={price}
-        // {...screencast}
-      />
-    </div>
+    <>
+      <Helmet>
+        <title>Prop Types 유효성 검사</title>
+      </Helmet>
+      <div>
+        <h2>ComponentPropTypes</h2>
+        <ScreenCast
+          id={id}
+          title={title}
+          tags={tags}
+          isOnline={isOnline}
+          price={price}
+          // {...screencast}
+        />
+      </div>
+    </>
   );
 }
 

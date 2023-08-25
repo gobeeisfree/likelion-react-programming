@@ -1,11 +1,10 @@
 import pb from '@/api/pocketbase';
-import useDocumentTitle from '@/hooks/useDocumentTitle';
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Link, useNavigate } from 'react-router-dom';
 
 function SignUp() {
-  useDocumentTitle('회원가입');
   const navigate = useNavigate();
 
   const [formState, setFormState] = useState({
@@ -44,75 +43,80 @@ function SignUp() {
   const handleDebounceInput = debounce(handleInput);
 
   return (
-    <div>
-      <h2>회원가입</h2>
+    <>
+      <Helmet>
+        <title>Sign Up - ReactBird</title>
+      </Helmet>
+      <div>
+        <h2>회원가입</h2>
 
-      <form
-        onSubmit={handleRegister}
-        className="mt-2 flex flex-col items-start justify-start gap-2"
-      >
-        <div>
-          <label htmlFor="name">사용자 이름</label>
-          <input
-            type="text"
-            name="name"
-            id="name"
-            defaultValue={formState.name}
-            onChange={handleDebounceInput}
-            className="ml-2 border border-slate-300"
-          />
-        </div>
-        <div>
-          <label htmlFor="username">계정 이름</label>
-          <input
-            type="text"
-            name="username"
-            id="username"
-            defaultValue={formState.username}
-            onChange={handleDebounceInput}
-            className="ml-2 border border-slate-300"
-          />
-        </div>
-        <div>
-          <label htmlFor="email">이메일</label>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            defaultValue={formState.email}
-            onChange={handleDebounceInput}
-            className="ml-2 border border-slate-300"
-          />
-        </div>
-        <div>
-          <label htmlFor="password">비밀번호</label>
-          <input
-            type="password"
-            name="password"
-            id="password"
-            defaultValue={formState.password}
-            onChange={handleDebounceInput}
-            className="ml-2 border border-slate-300"
-          />
-        </div>
-        <div>
-          <label htmlFor="passwordConfirm">비밀번호 확인</label>
-          <input
-            type="password"
-            name="passwordConfirm"
-            id="passwordConfirm"
-            defaultValue={formState.passwordConfirm}
-            onChange={handleDebounceInput}
-            className="ml-2 border border-slate-300"
-          />
-        </div>
-        <div className="flex gap-2">
-          <button type="submit">가입</button>
-          <button type="reset">취소</button>
-        </div>
-      </form>
-      <Link to="/signin">로그인</Link>
-    </div>
+        <form
+          onSubmit={handleRegister}
+          className="mt-2 flex flex-col items-start justify-start gap-2"
+        >
+          <div>
+            <label htmlFor="name">사용자 이름</label>
+            <input
+              type="text"
+              name="name"
+              id="name"
+              defaultValue={formState.name}
+              onChange={handleDebounceInput}
+              className="ml-2 border border-slate-300"
+            />
+          </div>
+          <div>
+            <label htmlFor="username">계정 이름</label>
+            <input
+              type="text"
+              name="username"
+              id="username"
+              defaultValue={formState.username}
+              onChange={handleDebounceInput}
+              className="ml-2 border border-slate-300"
+            />
+          </div>
+          <div>
+            <label htmlFor="email">이메일</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              defaultValue={formState.email}
+              onChange={handleDebounceInput}
+              className="ml-2 border border-slate-300"
+            />
+          </div>
+          <div>
+            <label htmlFor="password">비밀번호</label>
+            <input
+              type="password"
+              name="password"
+              id="password"
+              defaultValue={formState.password}
+              onChange={handleDebounceInput}
+              className="ml-2 border border-slate-300"
+            />
+          </div>
+          <div>
+            <label htmlFor="passwordConfirm">비밀번호 확인</label>
+            <input
+              type="password"
+              name="passwordConfirm"
+              id="passwordConfirm"
+              defaultValue={formState.passwordConfirm}
+              onChange={handleDebounceInput}
+              className="ml-2 border border-slate-300"
+            />
+          </div>
+          <div className="flex gap-2">
+            <button type="submit">가입</button>
+            <button type="reset">취소</button>
+          </div>
+        </form>
+        <Link to="/signin">로그인</Link>
+      </div>
+    </>
   );
 }
 

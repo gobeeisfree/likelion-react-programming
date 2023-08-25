@@ -1,15 +1,13 @@
 // Refs 참조 객체 생성
 // [only class] React.createRef
 
-import useDocumentTitle from '@/hooks/useDocumentTitle';
-import { useState, useRef } from 'react';
+import { useRef, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 // 훅!!
 // [only function] React.useRef
 
 function RefExampleMemoValues() {
-  useDocumentTitle('값을 기억하기 위한 Refs');
-
   // 상태
   // 상태가 변경되면 필연적으로 렌더링이 진행
   const [, renderTrigger] = useState(0);
@@ -29,6 +27,9 @@ function RefExampleMemoValues() {
 
   return (
     <>
+      <Helmet>
+        <title>값을 기억하기 위한 Refs</title>
+      </Helmet>
       <h2>값을 기억하기 위한 Refs</h2>
       <p>
         Refs란? React 컴포넌트 렌더링 프로세스에 영향을 주지 않으면서 다음

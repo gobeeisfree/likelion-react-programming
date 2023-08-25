@@ -1,10 +1,8 @@
-import useDocumentTitle from '@/hooks/useDocumentTitle';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 function FramerMotion_Animation() {
-  useDocumentTitle('Framer Motion 애니메이션');
-
   const [count, setCount] = useState(0);
   const [keys, setKeys] = useState(
     Array(6)
@@ -22,6 +20,9 @@ function FramerMotion_Animation() {
 
   return (
     <>
+      <Helmet>
+        <title>Framer Motion 애니메이션</title>
+      </Helmet>
       <h2 className="mb-10">컴포넌트 내부의 DOM 요소를 직접 참조하는 Refs</h2>
       <div className="my-6 flex gap-2">
         <button

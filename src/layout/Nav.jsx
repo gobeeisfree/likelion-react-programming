@@ -9,6 +9,7 @@ function Nav() {
     await signOut();
     navigate('/');
   };
+
   return (
     <nav>
       <ul className="flex items-center gap-4 p-5 font-extralight">
@@ -21,6 +22,18 @@ function Nav() {
               }
             >
               Sign In
+            </NavLink>
+          </li>
+        )}
+        {isAuth && (
+          <li>
+            <NavLink
+              to="/product/new"
+              className={({ isActive }) =>
+                isActive ? 'font-semibold text-rose-600' : ''
+              }
+            >
+              New
             </NavLink>
           </li>
         )}

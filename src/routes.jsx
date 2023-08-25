@@ -6,7 +6,6 @@ import {
 import ProtectRoute from './components/ProtectRoute';
 import RootLayout from './layout/RootLayout';
 import PassingProps from './learn/1-passing-props';
-import LocalStorage from './learn/10-local-storage';
 import LiftingStateUp from './learn/2-lifting-state-up';
 import PropsDrillingIssue from './learn/3-props-drilling-issue';
 import ReactContextAPI1 from './learn/4-1-react-context-api';
@@ -17,10 +16,12 @@ import GSAP_Animation from './learn/7-1-ref-3-gsap-animation';
 import GSAP_Context from './learn/7-2-ref-3-gsap-context';
 import FramerMotion_Animation from './learn/8-framer-motion';
 import ComponentPropTypes from './learn/9-component-prop-types';
+import LocalStorage from './learn/10-local-storage';
 import Contact from './pages/Contact';
 import Home from './pages/Home';
 import ProductEdit from './pages/ProductEdit';
 import ProductList from './pages/ProductList';
+import ProductNew from './pages/ProductNew';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 
@@ -30,6 +31,14 @@ const router = createBrowserRouter(
       <Route index element={<Home />} />
       <Route path="signup" element={<SignUp />} />
       <Route path="signin" element={<SignIn />} />
+      <Route
+        path="product/new"
+        element={
+          <ProtectRoute>
+            <ProductNew />
+          </ProtectRoute>
+        }
+      />
       <Route path="products" element={<ProductList />} />
       <Route
         path="product/edit/:productId"

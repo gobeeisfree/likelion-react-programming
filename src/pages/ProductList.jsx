@@ -20,7 +20,11 @@ function Products() {
   const { status, data, error } = useProductList();
 
   if (status === 'loading') {
-    return <Spinner size={160} />;
+    return (
+      <div className="grid h-full place-content-center">
+        <Spinner size={160} message={'상품 목록을 가져오는 중입니다.'} />
+      </div>
+    );
   }
 
   if (status === 'error') {

@@ -1,10 +1,13 @@
 import pb from '@/api/pocketbase';
 import { useAuth } from '@/contexts/Auth';
+import useDocumentTitle from '@/hooks/useDocumentTitle';
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 function SignIn() {
+  useDocumentTitle('로그인');
+
   const navigate = useNavigate();
   const { isAuth } = useAuth;
 

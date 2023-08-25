@@ -1,9 +1,12 @@
+import useDocumentTitle from '@/hooks/useDocumentTitle';
 import { numberWithComma } from '@/utils';
 import { arrayOf, bool, number, shape, string } from 'prop-types';
 import { useState } from 'react';
 
 function ComponentPropTypes() {
-  const [screencast, setScreencast] = useState({
+  useDocumentTitle('Prop Types 유효성 검사');
+
+  const [screencast] = useState({
     id: 'kciskdfkijc',
     title: '화면 공유',
     // tags: ['zoom', 'screen share', 'online lecture'],

@@ -1,9 +1,11 @@
 import pb from '@/api/pocketbase';
+import useDocumentTitle from '@/hooks/useDocumentTitle';
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 function SignUp() {
+  useDocumentTitle('회원가입');
   const navigate = useNavigate();
 
   const [formState, setFormState] = useState({

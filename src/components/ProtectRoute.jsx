@@ -9,6 +9,8 @@ function ProtectRoute({ children }) {
 
   useEffect(() => {
     if (!isAuth) {
+      import.meta.env.MODE === 'development' && toast.dismiss();
+
       toast('로그인 된 사용자만 이용 가능한 페이지입니다.', {
         position: 'top-right',
         icon: '🚨',

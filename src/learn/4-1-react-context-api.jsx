@@ -1,7 +1,7 @@
 import debounce from '@/utils/debounce';
 import { useState, createContext, useContext, useReducer } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { string, func } from 'prop-types';
+import { func, object } from 'prop-types';
 
 /* Context ------------------------------------------------------------------ */
 
@@ -24,7 +24,7 @@ import { string, func } from 'prop-types';
 /* -------------------------------------------------------------------------- */
 
 // 1. Context 생성
-// Theme 상태/업데이트 함수(dispach) 공급
+// Theme 상태/업데이트 함수(dispatch) 공급
 const ThemeContext = createContext();
 
 /* -------------------------------------------------------------------------- */
@@ -126,7 +126,7 @@ function ReactContextAPI() {
         value={{ theme, dispatch }}
       >
         <div
-          className="PassingProps p-5 rounded-md"
+          className="PassingProps rounded-md p-5"
           style={{ backgroundColor: color.bg }}
         >
           <GrandParent color={color} onChangeColor={handleChangeBgColor} />
@@ -143,7 +143,7 @@ export default ReactContextAPI;
 function GrandParent({ color, onChangeColor }) {
   return (
     <div
-      className="GrandParent p-4 rounded-md"
+      className="GrandParent rounded-md p-4"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 20%)`,
       }}
@@ -154,14 +154,14 @@ function GrandParent({ color, onChangeColor }) {
 }
 
 GrandParent.propTypes = {
-  color: string,
+  color: object,
   onChangeColor: func,
 };
 
 function Parent({ color, onChangeColor }) {
   return (
     <div
-      className="Parent p-4 rounded-md"
+      className="Parent rounded-md p-4"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 40%)`,
       }}
@@ -176,7 +176,7 @@ Parent.propTypes = GrandParent.propTypes;
 function Child({ color, onChangeColor }) {
   return (
     <div
-      className="Child p-4 rounded-md"
+      className="Child rounded-md p-4"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 60%)`,
       }}
@@ -206,13 +206,13 @@ function GrandChild({ color, onChangeColor }) {
 
   return (
     <div
-      className="GrandChild p-4 rounded-md flex flex-col justify-center items-center "
+      className="GrandChild flex flex-col items-center justify-center rounded-md p-4 "
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 80%)`,
       }}
     >
       <p
-        className={`${color.fg} mb-2 p-4 font-extrabold text-center drop-shadow-md`}
+        className={`${color.fg} mb-2 p-4 text-center font-extrabold drop-shadow-md`}
         style={{
           backgroundColor: currentTheme.bg,
           color: currentTheme.fg,
@@ -225,7 +225,7 @@ function GrandChild({ color, onChangeColor }) {
       <button
         type="button"
         onClick={handleSwitchThemeMode}
-        className="my-2 p-2 -x-4 border border-white"
+        className="-x-4 my-2 border border-white p-2"
       >
         <span className="uppercase">
           {theme.currentMode.includes('light') ? 'dark' : 'light'}

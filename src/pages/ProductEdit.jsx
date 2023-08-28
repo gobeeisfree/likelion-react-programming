@@ -4,24 +4,20 @@ import { useEffect, useRef, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { toast } from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
-
 const resetData = {
   title: '',
   color: '',
   price: '',
   photo: '',
 };
-
 function ProductEdit() {
   const { productId } = useParams();
   const navigate = useNavigate();
-
   const formRef = useRef(null);
   const titleRef = useRef(null);
   const colorRef = useRef(null);
   const priceRef = useRef(null);
   const photoRef = useRef(null);
-
   useEffect(() => {
     async function getProduct() {
       try {
@@ -39,18 +35,14 @@ function ProductEdit() {
         console.error(error);
       }
     }
-
     getProduct();
   }, [productId]);
-
   const handleUpdate = async (e) => {
     e.preventDefault();
-
     const titleValue = titleRef.current.value;
     const colorValue = colorRef.current.value;
     const priceValue = Number(priceRef.current.value);
     const photoValue = photoRef.current.files;
-
     if (!titleValue && !colorValue && !priceValue) {
       toast('이름, 색상, 가격 정보 입력이 필요합니다.', {
         icon: '🚨',
@@ -59,22 +51,16 @@ function ProductEdit() {
           'aria-live': 'polite',
         },
       });
-
       return;
     }
-
     const formData = new FormData();
-
     formData.append('title', titleValue);
     formData.append('color', colorValue);
     formData.append('price', priceValue);
 
-    console.log(photoValue);
-
     if (photoValue.length > 0) {
       formData.append('photo', photoValue[0]);
     }
-
     try {
       await pb.collection('products').update(productId, formData);
       navigate('/products');
@@ -82,7 +68,6 @@ function ProductEdit() {
       console.error(error);
     }
   };
-
   const handleReset = (e) => {
     e.preventDefault();
     titleRef.current.value = resetData.title;
@@ -90,9 +75,7 @@ function ProductEdit() {
     priceRef.current.value = resetData.price.toString();
     setFileImages(() => [{ image: resetData.photo, label: resetData.photo }]);
   };
-
   const [fileImages, setFileImages] = useState([]);
-
   const handleUpload = (e) => {
     const { files } = e.target;
     const fileImages = Array.from(files).map((file) => ({
@@ -101,7 +84,6 @@ function ProductEdit() {
     }));
     setFileImages(fileImages);
   };
-
   return (
     <>
       <Helmet>
@@ -130,9 +112,9 @@ function ProductEdit() {
               id="title"
               placeholder="Slim Fit Ribbed Sleeveless"
               className="
-            w-full rounded-md border border-slate-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2
-            dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
-          "
+              w-full rounded-md border border-slate-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2
+              dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
+            "
             />
           </div>
           <div className="flex w-full flex-col gap-2">
@@ -144,9 +126,9 @@ function ProductEdit() {
               id="color"
               placeholder="Black"
               className="
-            w-full rounded-md border border-slate-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2
-            dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
-          "
+              w-full rounded-md border border-slate-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2
+              dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
+            "
             />
           </div>
           <div className="flex w-full flex-col gap-2">
@@ -159,9 +141,9 @@ function ProductEdit() {
               placeholder="49000"
               step="100"
               className="
-            w-full rounded-md border border-slate-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2
-            dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
-          "
+              w-full rounded-md border border-slate-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2
+              dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
+            "
             />
           </div>
           <div className="flex w-full flex-col gap-2">
@@ -190,9 +172,9 @@ function ProductEdit() {
             <button
               type="submit"
               className="
-            rounded-full border-2 border-slate-300 px-3.5 py-1 hover:border-slate-400
-            dark:border-[1px] dark:border-sky-400 dark:text-sky-400 dark:hover:border-sky-500 dark:hover:bg-sky-400 dark:hover:text-sky-50
-          "
+              rounded-full border-2 border-slate-300 px-3.5 py-1 hover:border-slate-400
+              dark:border-[1px] dark:border-sky-400 dark:text-sky-400 dark:hover:border-sky-500 dark:hover:bg-sky-400 dark:hover:text-sky-50
+            "
             >
               수정
             </button>
@@ -200,9 +182,9 @@ function ProductEdit() {
               type="reset"
               onClick={handleReset}
               className="
-            rounded-full border-2 border-slate-200 bg-slate-200 px-3.5 py-1 hover:border-slate-300 hover:bg-slate-300
-            dark:border-zinc-400 dark:bg-zinc-400
-          "
+              rounded-full border-2 border-slate-200 bg-slate-200 px-3.5 py-1 hover:border-slate-300 hover:bg-slate-300
+              dark:border-zinc-400 dark:bg-zinc-400
+            "
             >
               취소
             </button>
@@ -212,5 +194,4 @@ function ProductEdit() {
     </>
   );
 }
-
 export default ProductEdit;

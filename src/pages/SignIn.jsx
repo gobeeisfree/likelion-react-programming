@@ -4,6 +4,7 @@ import debounce from '@/utils/debounce';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { FormInput } from '@/components/Forminput/FormInput';
 function SignIn() {
   const { state } = useLocation();
   const navigate = useNavigate();
@@ -47,44 +48,20 @@ function SignIn() {
           onSubmit={handleSignIn}
           className="flex flex-col items-center gap-2"
         >
-          <div className="flex w-full flex-col gap-2">
-            <label
-              htmlFor="email"
-              className="dark:text-zinc-500 dark:hover:text-zinc-300"
-            >
-              이메일
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              defaultValue={formState.email}
-              onChange={handleInput}
-              className="
-              w-full rounded-md border border-zinc-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2
-              dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
-            "
-            />
-          </div>
-          <div className="flex w-full flex-col gap-2">
-            <label
-              htmlFor="password"
-              className="dark:text-zinc-500 dark:hover:text-zinc-300"
-            >
-              패스워드
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              defaultValue={formState.password}
-              onChange={handleInput}
-              className="
-              w-full rounded-md border border-zinc-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2
-              dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
-            "
-            />
-          </div>
+          <FormInput
+            type="email"
+            label="이메일"
+            name="email"
+            defaultValue={formState.email}
+            onChange={handleInput}
+          />
+          <FormInput
+            type="password"
+            label="패스워드"
+            name="password"
+            defaultValue={formState.password}
+            onChange={handleInput}
+          />
           <div className="mt-5 flex gap-2">
             <button
               type="submit"

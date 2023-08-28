@@ -1,16 +1,11 @@
 import { Link } from 'react-router-dom';
-// import reactUrl from '@/assets/react.svg?url';
-// import reactRaw from '@/assets/react.svg?raw';
-import Logo from './Logo';
-
-// console.log(reactUrl);
-// console.log(reactRaw);
+import { FramerLogo } from './Logo';
 
 function Heading() {
   return (
     <h1>
       <Link to="/">
-        <Logo size={40} className="text-blue-300" />
+        <FramerLogo size={70} className="text-blue-300" />
       </Link>
     </h1>
   );

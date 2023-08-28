@@ -1,13 +1,21 @@
+import { motion } from 'framer-motion';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FramerLogo } from './Logo';
 
 function Heading() {
+  const [animKey, setAnimKey] = useState(0);
+
+  const handleRefreshAnimation = () => {
+    setAnimKey((key) => (key += 1));
+  };
+
   return (
-    <h1>
-      <Link to="/">
-        <FramerLogo size={70} className="text-blue-300" />
+    <motion.h1 whileHover={{ scale: 1.2, rotate: -2 }}>
+      <Link to="/" onClick={handleRefreshAnimation}>
+        <FramerLogo key={animKey} size={60} className="text-blue-300" />
       </Link>
-    </h1>
+    </motion.h1>
   );
 }
 

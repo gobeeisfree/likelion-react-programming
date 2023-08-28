@@ -1,12 +1,9 @@
 import { useListStore } from '@/store/list';
+import { useRef } from 'react';
 import { Helmet } from 'react-helmet-async';
-function ZustandLibrary() {
-  const list = useListStore(
-    /* selector function: memoization */
-    (state) => state.list
-  );
-  console.log(list);
+import { shape, string } from 'prop-types';
 
+function ZustandLibrary() {
   return (
     <>
       <Helmet>
@@ -79,12 +76,71 @@ function ZustandLibrary() {
         </ul>
       </details>
 
-      <ul className="my-8">
-        {list?.map((item) => (
-          <li key={item.id}>{item.title}</li>
-        ))}
-      </ul>
+      <AddItemControl />
+      <ItemList />
     </>
   );
 }
+
 export default ZustandLibrary;
+
+function AddItemControl() {
+  const itemRef = useRef(null);
+  const addItem = useListStore((state) => state.addItem);
+
+  const handleAddItem = () => {
+    const newItemTitle = itemRef.current.value;
+    addItem(newItemTitle);
+    itemRef.current.value = '';
+  };
+
+  return (
+    <div className="mt-5">
+      <input
+        type="text"
+        ref={itemRef}
+        aria-label="학습 주제 추가"
+        placeholder="예) Zustand 발음 10번 하기"
+        className="mr-2 border-b border-b-slate-400 px-2 py-1"
+      />
+      <button type="button" onClick={handleAddItem}>
+        추가
+      </button>
+    </div>
+  );
+}
+
+function ItemList() {
+  const list = useListStore((state) => state.list);
+
+  return (
+    <ul className="my-8">
+      {list?.map((item) => (
+        <Item key={item.id} item={item} />
+      ))}
+    </ul>
+  );
+}
+
+function Item({ item }) {
+  const deleteItem = useListStore((state) => state.deleteItem);
+  const handleDeleteItem = (deleteId) => {
+    deleteItem(deleteId);
+  };
+
+  return (
+    <li>
+      {item.title}{' '}
+      <button type="button" onClick={() => handleDeleteItem(item.id)}>
+        삭제
+      </button>
+    </li>
+  );
+}
+
+Item.propTypes = {
+  item: shape({
+    id: string.isRequired,
+    title: string.isRequired,
+  }),
+};

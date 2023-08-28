@@ -12,19 +12,20 @@ const listStore = (set) => {
       },
     ],
     // actions
-    addItem: (newItemTitle) => {
-      return set((state) => {
-        return {
-          list: [
-            ...state.list,
-            {
-              id: crypto.randomUUID(),
-              title: newItemTitle,
-            },
-          ],
-        };
-      });
-    },
+    addItem: (newItemTitle) =>
+      set((state) => ({
+        list: [
+          ...state.list,
+          {
+            id: crypto.randomUUID(),
+            title: newItemTitle,
+          },
+        ],
+      })),
+    deleteItem: (deleteId) =>
+      set((state) => ({
+        list: state.list.filter((item) => item.id !== deleteId),
+      })),
   };
 };
 

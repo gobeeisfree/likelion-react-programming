@@ -4,7 +4,6 @@ import { bool } from 'prop-types';
 import { Link } from 'react-router-dom';
 import FooterBar from './FooterBar';
 import HeaderBar from './HeaderBar';
-
 function RootLayout({ displaySideMenu = false }) {
   return (
     <div className="flex min-h-screen flex-col">
@@ -21,29 +20,32 @@ function RootLayout({ displaySideMenu = false }) {
     </div>
   );
 }
-
 RootLayout.propTypes = {
   displaySideMenu: bool,
 };
-
 export default RootLayout;
-
 function SideMenu() {
   return (
     <nav className="min-w-[100px] bg-slate-100 px-4 py-3">
       <h3 className="sr-only">학습 내비게이션 메뉴</h3>
-      <ul>
+      <ul className="flex flex-col gap-2 p-2 text-sm text-slate-500">
         <li>
-          <Link to="/learn/01">Props 전달</Link>
+          <Link to="/learn/01" className="hover:text-slate-950">
+            속성(props) 전달
+          </Link>
         </li>
         <li>
-          <Link to="/learn/02">상태 끌어올리기</Link>
+          <Link to="/learn/02" className="hover:text-slate-950">
+            상태 끌어올리기
+          </Link>
         </li>
         <li>
-          <Link to="/learn/03">속성(props) 드릴링 이슈</Link>
+          <Link to="/learn/03" className="hover:text-slate-950">
+            속성(props) 드릴링 이슈
+          </Link>
         </li>
         <li>
-          <Link to="/learn/04/01">
+          <Link to="/learn/04/01" className="hover:text-slate-950">
             상태 공유 Context{' '}
             <abbr
               title="Application Programming Interface"
@@ -54,28 +56,54 @@ function SideMenu() {
           </Link>
         </li>
         <li>
-          <Link to="/learn/04/02">Context 분리 관리</Link>
+          <Link to="/learn/04/02" className="hover:text-slate-950">
+            Context 분리 관리
+          </Link>
         </li>
         <li>
-          <Link to="/learn/05">값을 기억하기 위한 Refs</Link>
+          <Link to="/learn/05" className="hover:text-slate-950">
+            값을 기억하기 위한 Refs
+          </Link>
         </li>
         <li>
-          <Link to="/learn/06">DOM 요소를 참조하는 Refs</Link>
+          <Link to="/learn/06" className="hover:text-slate-950">
+            DOM 요소를 참조하는 Refs
+          </Link>
         </li>
         <li>
-          <Link to="/learn/07/01">GSAP 애니메이션</Link>
+          <Link to="/learn/07/01" className="hover:text-slate-950">
+            GSAP 애니메이션
+          </Link>
         </li>
         <li>
-          <Link to="/learn/07/02">GSAP 컨텍스트</Link>
+          <Link to="/learn/07/02" className="hover:text-slate-950">
+            GSAP 컨텍스트
+          </Link>
         </li>
         <li>
-          <Link to="/learn/08">Framer Motion 애니메이션</Link>
+          <Link to="/learn/08" className="hover:text-slate-950">
+            Framer Motion 애니메이션
+          </Link>
         </li>
         <li>
-          <Link to="/learn/09">Prop Types 유효성 검사</Link>
+          <Link to="/learn/09" className="hover:text-slate-950">
+            Prop Types 유효성 검사
+          </Link>
         </li>
         <li>
-          <Link to="/learn/10">로컬 스토리지 활용</Link>
+          <Link to="/learn/10" className="hover:text-slate-950">
+            로컬 스토리지 활용
+          </Link>
+        </li>
+        <li>
+          <Link to="/learn/11" className="hover:text-slate-950">
+            React 컨텍스트 이슈
+          </Link>
+        </li>
+        <li>
+          <Link to="/learn/12" className="hover:text-slate-950">
+            Zustand 라이브러리
+          </Link>
         </li>
       </ul>
     </nav>

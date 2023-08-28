@@ -1,7 +1,7 @@
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
 import GrandParent from './partials/GrandParent';
+import { Helmet } from 'react-helmet-async';
 
 function ReactContextAPI() {
   const [color, setColor] = useState({
@@ -21,10 +21,10 @@ function ReactContextAPI() {
   return (
     <>
       <Helmet>
-        <title>Context 분리 관리</title>
+        <title>Seperation React Context - Learn</title>
       </Helmet>
       <div
-        className="PassingProps rounded-md p-5"
+        className="PassingProps p-5 rounded-md"
         style={{ backgroundColor: color.bg }}
       >
         <GrandParent color={color} onChangeColor={handleChangeBgColor} />

@@ -1,0 +1,51 @@
+@layer components {
+  .header {
+    @apply flex items-center justify-between border-b border-b-slate-200 bg-white p-5;
+  }
+
+  .wrapper {
+    @apply container mx-auto mt-12 max-w-2xl;
+  }
+
+  .logo {
+    @apply h-8 w-8;
+  }
+
+  .output {
+    @apply rounded-md border border-sky-300 bg-slate-50 px-2 text-lg font-semibold text-cyan-400;
+  }
+
+  .headline {
+    @apply mb-5 text-2xl font-medium text-cyan-400;
+  }
+
+  .form {
+    @apply mb-5 flex gap-2;
+
+    & input {
+      @apply rounded border border-zinc-300 px-2 py-1 text-zinc-700;
+      @apply placeholder:text-zinc-400;
+    }
+  }
+
+  .button {
+    @apply rounded border border-slate-300 bg-slate-50 px-3 py-1 text-slate-700;
+    @apply hover:border-sky-400 hover:bg-sky-100 hover:text-sky-700 hover:shadow-lg;
+  }
+
+  .list {
+    @apply mt-5 overflow-hidden rounded-md border border-sky-400 shadow-md;
+
+    &.empty {
+      @apply border-stone-300;
+
+      & li {
+        @apply bg-stone-100 py-[21px] text-stone-400;
+      }
+    }
+
+    & li {
+      @apply flex items-center justify-between border-b border-sky-400 bg-sky-50 p-4 text-sky-700 last:border-0;
+    }
+  }
+}

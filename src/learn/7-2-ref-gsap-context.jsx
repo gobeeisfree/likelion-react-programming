@@ -6,7 +6,7 @@ function GSAP_Context() {
   return (
     <>
       <Helmet>
-        <title>GSAP 컨텍스트</title>
+        <title>GSAP Context - Learn</title>
       </Helmet>
       <h2 className="mb-10">컴포넌트 내부의 DOM 요소를 직접 참조하는 Refs</h2>
       <div className="flex gap-10">
@@ -17,6 +17,7 @@ function GSAP_Context() {
     </>
   );
 }
+
 function Circle() {
   const componentRef = useRef(null);
   const imageRef = useRef(null);
@@ -43,7 +44,7 @@ function Circle() {
     <figure
       role="none"
       ref={componentRef}
-      className="grid h-16 w-16 place-content-center rounded-full bg-yellow-400"
+      className="grid place-content-center w-16 h-16 rounded-full bg-yellow-400"
     >
       <img ref={imageRef} src="/vite.svg" alt="Vite" />
     </figure>

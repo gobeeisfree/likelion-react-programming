@@ -4,12 +4,12 @@ import { Helmet } from 'react-helmet-async';
 
 function LocalStorage() {
   const inputRef = useRef(null);
-  const { storageData, update, remove } = useStorage('gobeeisfree');
+  const { storageData, update, remove } = useStorage('yamoo9');
 
   return (
     <>
       <Helmet>
-        <title>로컬 스토리지 활용 인증 상태 유지</title>
+        <title>Persist State using LocalStorage - Learn</title>
       </Helmet>
       <h2>로컬 스토리지 관리</h2>
 
@@ -19,7 +19,7 @@ function LocalStorage() {
             update(inputRef.current.value);
           }}
           type="button"
-          className="my-2 border border-slate-300 p-2"
+          className="border border-slate-300 p-2 my-2"
         >
           저장
         </button>
@@ -28,7 +28,7 @@ function LocalStorage() {
             remove();
           }}
           type="button"
-          className="my-2 border border-red-300 p-2"
+          className="border border-red-300 p-2 my-2"
         >
           삭제
         </button>

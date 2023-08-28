@@ -1,9 +1,9 @@
-import Parent from './Parent';
+import Parent from "./Parent";
 
 export default function GrandParent({ color, onChangeColor }) {
   return (
     <div
-      className="GrandParent rounded-md p-4"
+      className="GrandParent p-4 rounded-md"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 20%)`,
       }}

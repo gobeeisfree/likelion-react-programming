@@ -1,9 +1,9 @@
-import GrandChild from './GrandChild';
+import GrandChild from "./GrandChild";
 
 export default function Child({ color, onChangeColor }) {
   return (
     <div
-      className="Child rounded-md p-4"
+      className="Child p-4 rounded-md"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 60%)`,
       }}
@@ -12,3 +12,4 @@ export default function Child({ color, onChangeColor }) {
     </div>
   );
 }
+

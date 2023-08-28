@@ -7,14 +7,16 @@ import ProtectRoute from './components/ProtectRoute';
 import RootLayout from './layout/RootLayout';
 import PassingProps from './learn/1-passing-props';
 import LocalStorage from './learn/10-local-storage';
+import ReactContextIssue from './learn/11-context-problem';
+import ZustandLibrary from './learn/12-zustand-library';
 import LiftingStateUp from './learn/2-lifting-state-up';
 import PropsDrillingIssue from './learn/3-props-drilling-issue';
 import ReactContextAPI1 from './learn/4-1-react-context-api';
 import ReactContextAPI2 from './learn/4-2-seperation-react-context';
-import RefExampleMemoValues from './learn/5-ref-1-memo-values';
-import RefExampleReferencingDOM from './learn/6-ref-2-referencing-dom';
-import GSAP_Animation from './learn/7-1-ref-3-gsap-animation';
-import GSAP_Context from './learn/7-2-ref-3-gsap-context';
+import RefExampleMemoValues from './learn/5-ref-memo-values';
+import RefExampleReferencingDOM from './learn/6-ref-referencing-dom';
+import GSAP_Animation from './learn/7-1-ref-gsap-animation';
+import GSAP_Context from './learn/7-2-ref-gsap-context';
 import FramerMotion_Animation from './learn/8-framer-motion';
 import ComponentPropTypes from './learn/9-component-prop-types';
 import Contact from './pages/Contact';
@@ -64,6 +66,8 @@ const router = createBrowserRouter(
         <Route path="08" element={<FramerMotion_Animation />} />
         <Route path="09" element={<ComponentPropTypes />} />
         <Route path="10" element={<LocalStorage />} />
+        <Route path="11" element={<ReactContextIssue />} />
+        <Route path="12" element={<ZustandLibrary />} />
       </Route>
     </Route>
   )

@@ -1,4 +1,5 @@
 import debounce from '@/utils/debounce';
+import { func, string } from 'prop-types';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 
@@ -15,10 +16,7 @@ export default PassingProps;
 /* -------------------------------------------------------------------------- */
 
 export function Parent() {
-  // 상태
   const [color, setColor] = useState('#999');
-
-  // 상태 업데이트 이벤트 핸들러
   const handleChangeBgColor = (newColor) => setColor(newColor);
 
   return (
@@ -32,7 +30,7 @@ export function Child({ color, onChangeColor }) {
   return (
     <>
       <Helmet>
-        <title>Props 전달</title>
+        <title>Passing Props - Learn</title>
       </Helmet>
       <div className="Child flex items-center justify-center gap-8">
         <p className="text-4xl font-extralight uppercase" style={{ color }}>
@@ -48,3 +46,8 @@ export function Child({ color, onChangeColor }) {
     </>
   );
 }
+
+Child.propTypes = {
+  color: string,
+  onChangeColor: func,
+};

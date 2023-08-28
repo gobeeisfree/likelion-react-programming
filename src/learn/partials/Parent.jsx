@@ -4,7 +4,7 @@ import { shape, string, func } from 'prop-types';
 export default function Parent({ color, onChangeColor }) {
   return (
     <div
-      className="Parent rounded-md p-4"
+      className="Parent p-4 rounded-md"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 40%)`,
       }}

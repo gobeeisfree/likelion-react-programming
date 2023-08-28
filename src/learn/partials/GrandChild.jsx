@@ -12,13 +12,13 @@ export default function GrandChild({ color, onChangeColor }) {
 
   return (
     <div
-      className="GrandChild flex flex-col items-center justify-center rounded-md p-4 "
+      className="GrandChild p-4 rounded-md flex flex-col justify-center items-center "
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 80%)`,
       }}
     >
       <p
-        className={`${color.fg} mb-2 p-4 text-center font-extrabold drop-shadow-md`}
+        className={`${color.fg} mb-2 font-extrabold p-4 text-center drop-shadow-md`}
         style={{
           backgroundColor: currentTheme.bg,
           color: currentTheme.fg,
@@ -31,7 +31,7 @@ export default function GrandChild({ color, onChangeColor }) {
       <button
         type="button"
         onClick={handleSwitchThemeMode}
-        className="-x-4 my-2 border border-white p-2"
+        className="my-2 p-2 -x-4 border border-white"
       >
         <span className="uppercase">
           {theme.currentMode.includes('light') ? 'dark' : 'light'}

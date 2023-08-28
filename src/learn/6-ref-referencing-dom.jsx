@@ -4,6 +4,9 @@ import { Helmet } from 'react-helmet-async';
 function RefExampleReferencingDOM() {
   return (
     <>
+      <Helmet>
+        <title>React Refs. referencing DOM - Learn</title>
+      </Helmet>
       <h2>컴포넌트 내부의 DOM 요소를 직접 참조하는 Refs</h2>
       <p className="mb-4">원에 클릭한 후, 애니메이션을 재생/정지해보세요.</p>
       <Circle />
@@ -96,20 +99,17 @@ function Circle() {
 
   return (
     <>
-      <Helmet>
-        <title>DOM 요소를 참조하는 Refs</title>
-      </Helmet>
-      <div className="mb-5 flex gap-2">
+      <div className="flex gap-2 mb-5">
         <button
           type="button"
-          className="rounded-md border border-slate-300 px-2.5 py-1.5 shadow-lg"
+          className="py-1.5 px-2.5 border border-slate-300 rounded-md shadow-lg"
           onClick={handlePlayAnimation}
         >
           PLAY
         </button>
         <button
           type="button"
-          className="rounded-md border border-slate-300 px-2.5 py-1.5 shadow-lg"
+          className="py-1.5 px-2.5 border border-slate-300 rounded-md shadow-lg"
           onClick={handlePauseAnimation}
         >
           PAUSE
@@ -118,7 +118,7 @@ function Circle() {
       <figure
         role="none"
         ref={circleRef}
-        className="h-16 w-16 rounded-full bg-yellow-400"
+        className="w-16 h-16 rounded-full bg-yellow-400"
       />
     </>
   );

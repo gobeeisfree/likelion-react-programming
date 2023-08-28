@@ -1,6 +1,8 @@
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { string, func } from 'prop-types';
+
 function PropsDrillingIssue() {
   // 상태
   const [color, setColor] = useState({
@@ -9,28 +11,36 @@ function PropsDrillingIssue() {
   });
 
   // 상태 업데이트 이벤트 핸들러
-  const handleChangeBgColor = debounce((newBgColor) =>
-    setColor((color) => ({
-      ...color,
-      bg: newBgColor,
-    }))
+  const handleChangeBgColor = debounce(
+    (newBgColor) =>
+      setColor((color) => ({
+        ...color,
+        bg: newBgColor,
+      })),
+    600
   );
 
   return (
-    <div
-      className="PassingProps rounded-md p-5"
-      style={{ backgroundColor: color.bg }}
-    >
-      <GrandParent color={color} onChangeColor={handleChangeBgColor} />
-    </div>
+    <>
+      <Helmet>
+        <title>Props Drilling Issue - Learn</title>
+      </Helmet>
+      <div
+        className="PassingProps p-5 rounded-md"
+        style={{ backgroundColor: color.bg }}
+      >
+        <GrandParent color={color} onChangeColor={handleChangeBgColor} />
+      </div>
+    </>
   );
 }
+
 /* -------------------------------------------------------------------------- */
 
 export function GrandParent({ color, onChangeColor }) {
   return (
     <div
-      className="GrandParent rounded-md p-4"
+      className="GrandParent p-4 rounded-md"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 20%)`,
       }}
@@ -40,10 +50,15 @@ export function GrandParent({ color, onChangeColor }) {
   );
 }
 
+GrandParent.propTypes = {
+  color: string,
+  onChangeColor: func,
+};
+
 export function Parent({ color, onChangeColor }) {
   return (
     <div
-      className="Parent rounded-md p-4"
+      className="Parent p-4 rounded-md"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 40%)`,
       }}
@@ -53,10 +68,12 @@ export function Parent({ color, onChangeColor }) {
   );
 }
 
+Parent.propTypes = GrandParent.propTypes;
+
 export function Child({ color, onChangeColor }) {
   return (
     <div
-      className="Child rounded-md p-4"
+      className="Child p-4 rounded-md"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 60%)`,
       }}
@@ -66,29 +83,29 @@ export function Child({ color, onChangeColor }) {
   );
 }
 
+Child.propTypes = GrandParent.propTypes;
+
 export function GrandChild({ color, onChangeColor }) {
   return (
-    <>
-      <Helmet>
-        <title>속성(props) 드릴링 이슈</title>
-      </Helmet>
-      <div
-        className="GrandChild flex flex-col items-center justify-center rounded-md p-4 "
-        style={{
-          backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 80%)`,
+    <div
+      className="GrandChild p-4 rounded-md flex flex-col justify-center items-center "
+      style={{
+        backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 80%)`,
+      }}
+    >
+      <p className={`${color.fg} mb-2`}>상태 데이터를 제게 주세요!</p>
+      <input
+        type="color"
+        aria-label="배경 색상"
+        defaultValue={color.bg}
+        onChange={(e) => {
+          onChangeColor(e.target.value);
         }}
-      >
-        <p className={`${color.fg} mb-2`}>상태 데이터를 제게 주세요!</p>
-        <input
-          type="color"
-          aria-label="배경 색상"
-          defaultValue={color.bg}
-          onChange={(e) => {
-            onChangeColor(e.target.value);
-          }}
-        />
-      </div>
-    </>
+      />
+    </div>
   );
 }
+
+GrandChild.propTypes = GrandParent.propTypes;
+
 export default PropsDrillingIssue;

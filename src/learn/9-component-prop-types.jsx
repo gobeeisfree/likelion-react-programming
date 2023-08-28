@@ -1,6 +1,6 @@
-import { numberWithComma } from '@/utils';
-import { arrayOf, bool, number, shape, string } from 'prop-types';
 import { useState } from 'react';
+import { string, number, bool, arrayOf, shape } from 'prop-types';
+import { numberWithComma } from '@/utils';
 import { Helmet } from 'react-helmet-async';
 
 function ComponentPropTypes() {
@@ -34,19 +34,17 @@ function ComponentPropTypes() {
   return (
     <>
       <Helmet>
-        <title>Prop Types 유효성 검사</title>
+        <title>Prop Types Validation - Learn</title>
       </Helmet>
-      <div>
-        <h2>ComponentPropTypes</h2>
-        <ScreenCast
-          id={id}
-          title={title}
-          tags={tags}
-          isOnline={isOnline}
-          price={price}
-          // {...screencast}
-        />
-      </div>
+      <h2>ComponentPropTypes</h2>
+      <ScreenCast
+        id={id}
+        title={title}
+        tags={tags}
+        isOnline={isOnline}
+        price={price}
+        // {...screencast}
+      />
     </>
   );
 }

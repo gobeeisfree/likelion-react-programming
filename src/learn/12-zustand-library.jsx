@@ -1,5 +1,4 @@
 import { Helmet } from 'react-helmet-async';
-
 function ZustandLibrary() {
   return (
     <>
@@ -11,7 +10,7 @@ function ZustandLibrary() {
       <details>
         <summary>Zustand 발음 어떻게 해야할까요?</summary>
 
-        <p className="mt-4 pl-4 leading-normal text-sm">
+        <p className="mt-4 pl-4 text-sm leading-normal">
           독일어 Zu는 혀끝을 아래 이에 붙이고 <q>ㅊ</q> 또는 <q>ㅅ</q>과
           비슷하게 발음하는{' '}
           <q>
@@ -29,7 +28,7 @@ function ZustandLibrary() {
           라고 들립니다.
         </p>
 
-        <ul className="pl-6 my-5 flex flex-col gap-2 list-image-[url('/link.svg')] text-slate-500">
+        <ul className="my-5 flex list-image-[url('/link.svg')] flex-col gap-2 pl-6 text-slate-500">
           <li>
             <a
               href="https://bit.ly/3Lmebx5"
@@ -75,5 +74,4 @@ function ZustandLibrary() {
     </>
   );
 }
-
 export default ZustandLibrary;

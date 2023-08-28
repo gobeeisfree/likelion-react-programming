@@ -1,12 +1,12 @@
 import pb from '@/api/pocketbase';
+import { Button, FormInput } from '@/components';
 import { useAuth } from '@/contexts/Auth';
 import debounce from '@/utils/debounce';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { FormInput } from '@/components/Forminput/FormInput';
 function SignIn() {
-  const { state } = useLocation();
+  const { state } = useLocation(); // location { pathname, search, hash, state = {  } }
   const navigate = useNavigate();
   const { isAuth } = useAuth();
   const [formState, setFormState] = useState({
@@ -16,12 +16,26 @@ function SignIn() {
   const handleSignIn = async (e) => {
     e.preventDefault();
     const { email, password } = formState;
+
     try {
-      await pb.collection('users').authWithPassword(email, password);
+      const response = await pb
+        .collection('users')
+        .authWithPassword(email, password);
+
+      console.log(response);
+
       if (!state) {
         navigate('/');
       } else {
-        navigate(state.wishLocationPath);
+        // 사용자가 원하는 경로로 접속 요청
+        // 로그인 유무 확인이 안되서 사용자를 로그인 페이지로 이동
+        // 로그인 페이지에서 사용자가 로그인 시도 (성공)
+        // 성공 (로그인 이력을 남기지 않도록 합니다.)
+        // console.log(state.wishLocationPath);
+        // 이슈 확인 결과: '/signin'이 나와서 이동 안한 것임!
+
+        const { wishLocationPath } = state;
+        navigate(wishLocationPath === '/signin' ? '/' : wishLocationPath);
       }
     } catch (error) {
       console.error(error);
@@ -43,7 +57,6 @@ function SignIn() {
         <h2 className="my-5 text-center text-2xl font-medium text-blue-950 dark:text-sky-500/90">
           로그인 폼
         </h2>
-
         <form
           onSubmit={handleSignIn}
           className="flex flex-col items-center gap-2"
@@ -62,26 +75,13 @@ function SignIn() {
             defaultValue={formState.password}
             onChange={handleInput}
           />
-          <div className="mt-5 flex gap-2">
-            <button
-              type="submit"
-              className="
-                rounded-full border-2 border-zinc-300 px-3.5 py-1 hover:border-zinc-400
-              dark:border-[1px] dark:border-sky-400 dark:text-sky-400 dark:hover:border-sky-500 dark:hover:bg-sky-400 dark:hover:text-sky-50
-              "
-            >
-              로그인
-            </button>
-            <button
-              type="reset"
-              className="
-                rounded-full border-2 border-zinc-200 bg-zinc-200 px-3.5 py-1 hover:border-zinc-300 hover:bg-zinc-300
-                dark:border-zinc-400 dark:bg-zinc-400
-              "
-            >
+
+          <Button.Group>
+            <Button type="submit">로그인</Button>
+            <Button type="reset" secondary>
               취소
-            </button>
-          </div>
+            </Button>
+          </Button.Group>
         </form>
 
         <div className="mt-8 flex justify-center border-t border-slate-200 pt-8 dark:border-slate-200/30">
@@ -92,7 +92,6 @@ function SignIn() {
             회원가입
           </Link>
         </div>
-
         {isAuth && (
           <button
             type="button"

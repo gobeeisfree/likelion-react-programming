@@ -1,8 +1,10 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
 import pb from '@/api/pocketbase';
+import { Button } from '@/components/Button/Button';
+import { FormInput } from '@/components/Forminput/FormInput';
 import debounce from '@/utils/debounce';
+import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { Link, useNavigate } from 'react-router-dom';
 function SignUp() {
   const navigate = useNavigate();
   const [formState, setFormState] = useState({
@@ -48,121 +50,46 @@ function SignUp() {
           onSubmit={handleRegister}
           className="flex flex-col items-center gap-2"
         >
-          <div className="flex w-full flex-col gap-2">
-            <label
-              htmlFor="name"
-              className="dark:text-zinc-500 dark:hover:text-zinc-300"
-            >
-              사용자 이름
-            </label>
-            <input
-              type="text"
-              name="name"
-              id="name"
-              defaultValue={formState.name}
-              onChange={handleDebounceInput}
-              className="
-              w-full rounded-md border border-zinc-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2
-              dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
-            "
-            />
-          </div>
-          <div className="flex w-full flex-col gap-2">
-            <label
-              htmlFor="username"
-              className="dark:text-zinc-500 dark:hover:text-zinc-300"
-            >
-              계정 이름
-            </label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              defaultValue={formState.username}
-              onChange={handleDebounceInput}
-              className="
-              w-full rounded-md border border-zinc-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2
-              dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
-            "
-            />
-          </div>
-          <div className="flex w-full flex-col gap-2">
-            <label
-              htmlFor="email"
-              className="dark:text-zinc-500 dark:hover:text-zinc-300"
-            >
-              이메일
-            </label>
-            <input
-              type="email"
-              name="email"
-              id="email"
-              defaultValue={formState.email}
-              onChange={handleDebounceInput}
-              className="
-              w-full rounded-md border border-zinc-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2
-              dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
-            "
-            />
-          </div>
-          <div className="flex w-full flex-col gap-2">
-            <label
-              htmlFor="password"
-              className="dark:text-zinc-500 dark:hover:text-zinc-300"
-            >
-              패스워드
-            </label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              defaultValue={formState.password}
-              onChange={handleDebounceInput}
-              className="
-              w-full rounded-md border border-zinc-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2
-              dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
-            "
-            />
-          </div>
-          <div className="flex w-full flex-col gap-2">
-            <label
-              htmlFor="passwordConfirm"
-              className="dark:text-zinc-500 dark:hover:text-zinc-300"
-            >
-              패스워드 확인
-            </label>
-            <input
-              type="password"
-              name="passwordConfirm"
-              id="passwordConfirm"
-              defaultValue={formState.passwordConfirm}
-              onChange={handleDebounceInput}
-              className="
-              w-full rounded-md border border-zinc-300 px-4 py-1.5 focus:outline-none focus:ring-2 focus:ring-zinc-400 focus:ring-offset-2
-              dark:border-zinc-300/40 dark:bg-black dark:text-sky-400 dark:placeholder:text-zinc-600 dark:focus:ring-1 dark:focus:ring-sky-400 dark:focus:ring-offset-1
-            "
-            />
-          </div>
-          <div className="mt-5 flex gap-2">
-            <button
-              type="submit"
-              className="
-                rounded-full border-2 border-zinc-300 px-3.5 py-1 hover:border-zinc-400
-              dark:border-[1px] dark:border-sky-400 dark:text-sky-400 dark:hover:border-sky-500 dark:hover:bg-sky-400 dark:hover:text-sky-50
-              "
-            >
-              가입
-            </button>
-            <button
-              type="reset"
-              className="
-                rounded-full border-2 border-zinc-200 bg-zinc-200 px-3.5 py-1 hover:border-zinc-300 hover:bg-zinc-300
-                dark:border-zinc-400 dark:bg-zinc-400
-              "
-            >
+          <FormInput
+            label="사용자 이름"
+            name="name"
+            defaultValue={formState.name}
+            onChange={handleDebounceInput}
+          />
+          <FormInput
+            label="계정 이름"
+            name="username"
+            defaultValue={formState.username}
+            onChange={handleDebounceInput}
+          />
+          <FormInput
+            label="이메일"
+            name="email"
+            type="email"
+            defaultValue={formState.email}
+            onChange={handleDebounceInput}
+          />
+          <FormInput
+            label="패스워드"
+            type="password"
+            name="password"
+            defaultValue={formState.password}
+            onChange={handleDebounceInput}
+          />
+          <FormInput
+            label="패스워드 확인"
+            name="passwordConfirm"
+            type="password"
+            defaultValue={formState.passwordConfirm}
+            onChange={handleDebounceInput}
+          />
+
+          <Button.Group>
+            <Button type="submit">가입</Button>
+            <Button type="reset" secondary>
               취소
-            </button>
-          </div>
+            </Button>
+          </Button.Group>
         </form>
 
         <div className="mt-8 flex justify-center border-t border-slate-200 pt-8 dark:border-slate-200/30">

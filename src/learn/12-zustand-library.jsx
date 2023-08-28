@@ -1,7 +1,10 @@
 import { useListStore } from '@/store/list';
 import { Helmet } from 'react-helmet-async';
 function ZustandLibrary() {
-  const list = useListStore(/* selector function */ (state) => state.list);
+  const list = useListStore(
+    /* selector function: memoization */
+    (state) => state.list
+  );
   console.log(list);
 
   return (
@@ -76,7 +79,7 @@ function ZustandLibrary() {
         </ul>
       </details>
 
-      <ul>
+      <ul className="my-8">
         {list?.map((item) => (
           <li key={item.id}>{item.title}</li>
         ))}

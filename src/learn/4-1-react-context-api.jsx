@@ -1,7 +1,7 @@
 import debounce from '@/utils/debounce';
-import { useState, createContext, useContext, useReducer } from 'react';
+import { func, shape, string } from 'prop-types';
+import { createContext, useContext, useReducer, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { func, object } from 'prop-types';
 
 /* Context ------------------------------------------------------------------ */
 

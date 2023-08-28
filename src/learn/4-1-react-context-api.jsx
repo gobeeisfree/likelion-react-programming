@@ -154,7 +154,10 @@ function GrandParent({ color, onChangeColor }) {
 }
 
 GrandParent.propTypes = {
-  color: object,
+  color: shape({
+    fg: string,
+    bg: string,
+  }),
   onChangeColor: func,
 };
 

@@ -24,7 +24,7 @@ function ReactContextAPI() {
         <title>Seperation React Context - Learn</title>
       </Helmet>
       <div
-        className="PassingProps p-5 rounded-md"
+        className="PassingProps rounded-md p-5"
         style={{ backgroundColor: color.bg }}
       >
         <GrandParent color={color} onChangeColor={handleChangeBgColor} />

@@ -1,7 +1,7 @@
 import debounce from '@/utils/debounce';
+import { func, object } from 'prop-types';
 import { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-import { string, func } from 'prop-types';
 
 function PropsDrillingIssue() {
   // 상태
@@ -26,7 +26,7 @@ function PropsDrillingIssue() {
         <title>Props Drilling Issue - Learn</title>
       </Helmet>
       <div
-        className="PassingProps p-5 rounded-md"
+        className="PassingProps rounded-md p-5"
         style={{ backgroundColor: color.bg }}
       >
         <GrandParent color={color} onChangeColor={handleChangeBgColor} />
@@ -40,7 +40,7 @@ function PropsDrillingIssue() {
 export function GrandParent({ color, onChangeColor }) {
   return (
     <div
-      className="GrandParent p-4 rounded-md"
+      className="GrandParent rounded-md p-4"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 20%)`,
       }}
@@ -51,14 +51,14 @@ export function GrandParent({ color, onChangeColor }) {
 }
 
 GrandParent.propTypes = {
-  color: string,
+  color: object,
   onChangeColor: func,
 };
 
 export function Parent({ color, onChangeColor }) {
   return (
     <div
-      className="Parent p-4 rounded-md"
+      className="Parent rounded-md p-4"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 40%)`,
       }}
@@ -73,7 +73,7 @@ Parent.propTypes = GrandParent.propTypes;
 export function Child({ color, onChangeColor }) {
   return (
     <div
-      className="Child p-4 rounded-md"
+      className="Child rounded-md p-4"
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 60%)`,
       }}
@@ -88,7 +88,7 @@ Child.propTypes = GrandParent.propTypes;
 export function GrandChild({ color, onChangeColor }) {
   return (
     <div
-      className="GrandChild p-4 rounded-md flex flex-col justify-center items-center "
+      className="GrandChild flex flex-col items-center justify-center rounded-md p-4 "
       style={{
         backgroundColor: `color-mix(in srgb, ${color.bg} 100%, white 80%)`,
       }}

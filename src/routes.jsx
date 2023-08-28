@@ -9,6 +9,7 @@ import PassingProps from './learn/1-passing-props';
 import LocalStorage from './learn/10-local-storage';
 import ReactContextIssue from './learn/11-context-problem';
 import ZustandLibrary from './learn/12-zustand-library';
+import TanstackQueryLibrary from './learn/13-tanstack-query';
 import LiftingStateUp from './learn/2-lifting-state-up';
 import PropsDrillingIssue from './learn/3-props-drilling-issue';
 import ReactContextAPI1 from './learn/4-1-react-context-api';
@@ -68,6 +69,7 @@ const router = createBrowserRouter(
         <Route path="10" element={<LocalStorage />} />
         <Route path="11" element={<ReactContextIssue />} />
         <Route path="12" element={<ZustandLibrary />} />
+        <Route path="13" element={<TanstackQueryLibrary />} />
       </Route>
     </Route>
   )
